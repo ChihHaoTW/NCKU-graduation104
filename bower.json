@@ -1,0 +1,27 @@
+{
+  "name": "NCKU-graduation104",
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "jquery-stylesheet": "~0.3.5",
+    "js-url": "~1.8.6",
+    "reset-css": "~2.0.20110126",
+    "semantic-ui": "~0.13.0",
+    "jquery.easing": "~1.3.1",
+    "modernizr": "~2.8.3"
+  },
+  "overrides": {
+    "google-code-prettify": {
+      "main": "bin/run_prettify.min.js"
+    },
+    "jquery-stylesheet": {
+      "main": "jquery.stylesheet.js"
+    },
+    "js-url": {
+      "main": "url.js"
+    },
+    "semantic-ui": {
+      "main": "build/packaged/**/*"
+    }
+  },
+  "version": "0.0.1"
+}
