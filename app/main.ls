@@ -4,6 +4,9 @@ $ !->
   pre-state = 1
   winWidth = $ window .width!
 
+  $ window .onscroll = ->
+    $ window .scrollTo 0,0
+
   $.getJSON \/loadEvent (json) !->
     console.log json
     for let event in json
