@@ -15,6 +15,7 @@ a{
     width: 100%;
     position: absolute;
     overflow: hidden;
+    display: inline;
 }
 .clr{
     clear: both;

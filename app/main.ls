@@ -26,7 +26,16 @@ $ !->
   for let i from 1 to state
     $('#icon_'+i).click !->
       return if i == pre-state
-      $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+
+      if i == 1
+        <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+        $ \#ss-links .animate {left: "10px"}, 100
+      else if pre-state == 1
+        $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+        $ \#ss-links .animate {left: "-#{$ \#ss-links .width!}"}, 500
+      else
+        $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+
       $('#icon_'+i).addClass \active
       $('#icon_'+pre-state).removeClass \active
       pre-state := i
