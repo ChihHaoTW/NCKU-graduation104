@@ -30,25 +30,24 @@ $ !->
     $('#icon_'+i).click !->
       return if i == pre-state
 
-      $ "\#page_#i" .show!
+      pre-state_ = pre-state
+      pre-state := i
 
+      $ "\#page_#i" .show!
       $('#icon_'+i).addClass \active
-      $('#icon_'+pre-state).removeClass \active
+      $('#icon_'+pre-state_).removeClass \active
 
       if i == 1
         <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
         <- $ \#ss-links .animate {left: "10px"}, 100
-        <- $ "\#page_#pre-state" .hide
-        pre-state := i
-      else if pre-state == 1
-        <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+        $ "\#page_#pre-state_" .hide
+      else if pre-state_ == 1
         $ \#ss-links .animate {left: "-#{$ \#ss-links .width!}"}, 100
-        <- $ "\#page_#pre-state" .hide!
-        pre-state := i
+        <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+        $ "\#page_#pre-state_" .hide!
       else
         <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
-        <- $ "\#page_#pre-state" .hide!
-        pre-state := i
+        $ "\#page_#pre-state_" .hide!
 
       console.log winWidth
 
