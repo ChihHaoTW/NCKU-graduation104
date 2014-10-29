@@ -1,11 +1,11 @@
 $ !->
 
+  $ \#page_2 .hide!
+  $ \#page_3 .hide!
+
   state = 3
   pre-state = 1
   winWidth = $ window .width!
-
-  $ window .onscroll = ->
-    $ window .scrollTo 0,0
 
   $.getJSON \/loadEvent (json) !->
     console.log json
@@ -30,22 +30,29 @@ $ !->
     $('#icon_'+i).click !->
       return if i == pre-state
 
-      if i == 1
-        <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
-        $ \#ss-links .animate {left: "10px"}, 100
-      else if pre-state == 1
-        $ \#book .animate {right: $('#page_'+i).position!.left}, 500
-        $ \#ss-links .animate {left: "-#{$ \#ss-links .width!}"}, 500
-      else
-        $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+      $ "\#page_#i" .show!
 
       $('#icon_'+i).addClass \active
       $('#icon_'+pre-state).removeClass \active
-      pre-state := i
+
+      if i == 1
+        <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+        <- $ \#ss-links .animate {left: "10px"}, 100
+        <- $ "\#page_#pre-state" .hide
+        pre-state := i
+      else if pre-state == 1
+        <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+        $ \#ss-links .animate {left: "-#{$ \#ss-links .width!}"}, 100
+        <- $ "\#page_#pre-state" .hide!
+        pre-state := i
+      else
+        <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+        <- $ "\#page_#pre-state" .hide!
+        pre-state := i
+
       console.log winWidth
 
   resize!
-
 
 
 # vi:et:ft=ls:nowrap:sw=2:ts=2
