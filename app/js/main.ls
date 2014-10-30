@@ -11,8 +11,9 @@ $ !->
     console.log json
     for let event in json
       console.log event
+
       $ \#ss-container .append("
-        <div class='ss-row ss-large'>
+        <div class='ss-row #{event.scale}'>
           <div class='ss-left'>
             <h3>
               <span>November 22, 2011</span>

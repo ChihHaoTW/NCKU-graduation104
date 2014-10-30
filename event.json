@@ -1,29 +1,34 @@
 [
   {
+    "scale" : "ss-large",
     "date" : "date",
     "tittle" : "tittle",
     "locate" : "locate",
     "content" : "content"
   },
   {
+    "scale" : "ss-medium",
     "date" : 1,
     "tittle" : 2,
     "locate" : 3,
     "content" : 4
   },
   {
+    "scale" : "ss-large",
     "date" : 1,
     "tittle" : 2,
     "locate" : 3,
     "content" : 4
   },
   {
+    "scale" : "ss-medium",
     "date" : 1,
     "tittle" : 2,
     "locate" : 3,
     "content" : 4
   },
   {
+    "scale" : "ss-large",
     "date" : 1,
     "tittle" : 2,
     "locate" : 3,
