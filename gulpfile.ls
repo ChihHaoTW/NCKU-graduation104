@@ -45,9 +45,6 @@ gulp.task \js ->
     .pipe gulp-concat \app.js
     .pipe gulp.dest paths.build
     .pipe livereload!
-  #gulp.src [paths.app+\/**/*.ls paths.app+\!/ani/*.ls] .pipe gulp-livescript {+bare}
-  #  .pipe gulp.dest paths.build
-  #  .pipe livereload!
 
 gulp.task \res ->
   gulp.src paths.app+\/res/**
