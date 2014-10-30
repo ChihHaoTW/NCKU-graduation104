@@ -35,7 +35,9 @@ $ !->
 
       $ "\#page_#i" .show!
       $('#icon_'+i).addClass \active
+      $('#icon_'+i).addClass \red
       $('#icon_'+pre-state_).removeClass \active
+      $('#icon_'+pre-state_).removeClass \red
 
       if i == 1
         <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
