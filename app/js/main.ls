@@ -41,15 +41,15 @@ $ !->
       $('#icon_'+pre-state_).removeClass \red
 
       if i == 1
-        <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
-        <- $ \#ss-links .animate {left: "10px"}, 100
         $ "\#page_#pre-state_" .hide!
+        <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+        $ \#ss-links .animate {left: "10px"}, 100
       else if pre-state_ == 1
         $ \#ss-links .animate {left: "-#{$ \#ss-links .width!}"}, 100
-        <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+        $ \#book .animate {right: $('#page_'+i).position!.left}, 500
         $ "\#page_#pre-state_" .hide!
       else
-        <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+        $ \#book .animate {right: $('#page_'+i).position!.left}, 500
         $ "\#page_#pre-state_" .hide!
 
       console.log winWidth
