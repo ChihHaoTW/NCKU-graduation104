@@ -54,7 +54,16 @@ $ !->
 
       console.log winWidth
 
+  $ \.info .click !->
+    mask!
+
   resize!
 
+mask = ->
+  $ \body .append "<div id='mask'></div>"
+  $ \#mask .animate {opacity:"0.3"}
+  $ \#mask .click ->
+    <- $ \#mask .animate {opacity:"0"}
+    $ \#mask .remove!
 
 # vi:et:ft=ls:nowrap:sw=2:ts=2
