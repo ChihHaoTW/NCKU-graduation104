@@ -10,4 +10,8 @@ module.exports =
       res.send event
       res.end!
 
+  #sendReply: !->
+   # this.server.post \writeReply (req, res) !->
+
+
 # vi:et:ft=ls:nowrap:sw=2:ts=2
