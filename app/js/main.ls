@@ -5,26 +5,43 @@ $ !->
 
   state = 3
   pre-state = 1
+  count = 0
   winWidth = $ window .width!
 
   $.getJSON \/loadEvent (json) !->
     console.log json
     for let event in json
       console.log event
+      count_ = count++ % 2
+      if count_ == 0
+        $ \#ss-container .append("
+          <div class='ss-row #{event.scale}'>
+            <div class='ss-left'>
+              <h3>
+                <span>November 22, 2011</span>
+                <a href='#'> #{event.tittle} </a>
+              </h3>
+            </div>
+            <div class='ss-right'>
+              <a href='#' class='ss-circle ss-circle-3'> #{event.content} </a>
+            </div>
+          </div>
+        ")
+      else
+        $ \#ss-container .append("
+          <div class='ss-row #{event.scale}'>
+            <div class='ss-left'>
+              <a href='#' class='ss-circle ss-circle-3'> #{event.content} </a>
+            </div>
+            <div class='ss-right'>
+              <h3>
+                <span>November 22, 2011</span>
+                <a href='#'> #{event.tittle} </a>
+              </h3>
+            </div>
+          </div>
+        ")
 
-      $ \#ss-container .append("
-        <div class='ss-row #{event.scale}'>
-          <div class='ss-left'>
-            <h3>
-              <span>November 22, 2011</span>
-              <a href='#'> #{event.tittle} </a>
-            </h3>
-          </div>
-          <div class='ss-right'>
-            <a href='#' class='ss-circle ss-circle-3'> #{event.content} </a>
-          </div>
-        </div>
-      ")
     scroll!
 
   for let i from 1 to state
