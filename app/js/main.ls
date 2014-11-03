@@ -32,11 +32,11 @@ $ !->
                 <div class='ss-left'>
                   <h3>
                     <span>November 22, 2011</span>
-                    <a href='#'> #{event.tittle} </a>
+                    <a> #{event.tittle} </a>
                   </h3>
                 </div>
                 <div class='ss-right'>
-                  <a href='#' class='ss-circle ss-circle-3'> #{event.content} </a>
+                  <a class='ss-circle ss-circle-3'> #{event.content} </a>
                 </div>
               </div>
             ")
@@ -44,7 +44,7 @@ $ !->
             $ \#ss-container .append("
               <div class='ss-row #{event.scale}'>
                 <div class='ss-left'>
-                  <a href='#' class='ss-circle ss-circle-3'> #{event.content} </a>
+                  <a class='ss-circle ss-circle-3'> #{event.content} </a>
                 </div>
                 <div class='ss-right'>
                 </div>
