@@ -80,10 +80,11 @@ $ !->
 
       console.log winWidth
 
-  $ \.info .click !->
-    mask!
+  #$ \.info .click !->
+  #  mask!
 
   resize!
+  profile!
 
 mask = ->
   $ \body .append "<div id='mask'></div>"
@@ -91,5 +92,20 @@ mask = ->
   $ \#mask .click ->
     <- $ \#mask .animate {opacity:"0"}
     $ \#mask .remove!
+
+profile = ->
+  for let i from 1 to 13
+    $ "\#col#i" .click !->
+      for let j from 1 to 13
+        if j == i
+          console.log \i=j
+        else if j % 2 == 1
+          setTimeout !->
+            $ "\#col#j" .animate {top:-($ "\#col#j" .height!)/2 + \px}
+          , j * 100
+        else
+          setTimeout !->
+            $ "\#col#j" .animate {bottom:-($ "\#col#j" .height!)/2 + \px}
+          , j * 100
 
 # vi:et:ft=ls:nowrap:sw=2:ts=2
