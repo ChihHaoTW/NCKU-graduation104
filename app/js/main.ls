@@ -96,16 +96,22 @@ mask = ->
 profile = ->
   for let i from 1 to 13
     $ "\#col#i" .click !->
+      col-height = $ "\#col1" .height!
+      $ \#info .height col-height
+      $ \#info .css \margin-top, -col-height/2+25
       for let j from 1 to 13
         if j == i
-          console.log \i=j
+          if j % 2 == 1
+            <- $ "\#col#j" .animate {top:-col-height*1.5 + \px}
+            $ @ .children \a .children \div .children \img .clone! .appendTo $ \#info
+          else
+            <- $ "\#col#j" .animate {bottom:-col-height*1.5 + \px}
+            $ @ .children \a .children \div .children \img .clone! .appendTo $ \#info
         else if j % 2 == 1
-          setTimeout !->
-            $ "\#col#j" .animate {top:-($ "\#col#j" .height!)/2 + \px}
-          , j * 100
+          $ "\#col#j" .delay 50*j .animate {top:-col-height/2 + \px}
         else
-          setTimeout !->
-            $ "\#col#j" .animate {bottom:-($ "\#col#j" .height!)/2 + \px}
-          , j * 100
+          $ "\#col#j" .delay 50*j .animate {bottom:-col-height/2 + \px}
+        $ "\#col#j" .animate {opacity:"0.8"}
+
 
 # vi:et:ft=ls:nowrap:sw=2:ts=2
