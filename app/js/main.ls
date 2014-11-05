@@ -97,16 +97,19 @@ profile = ->
   for let i from 1 to 13
     $ "\#col#i" .click !->
       col-height = $ "\#col1" .height!
+      $ \#info .empty!
       $ \#info .height col-height
       $ \#info .css \margin-top, -col-height/2+25
       for let j from 1 to 13
         if j == i
           if j % 2 == 1
             <- $ "\#col#j" .animate {top:-col-height*1.5 + \px}
-            $ @ .children \a .children \div .children \img .clone! .appendTo $ \#info
+            $ @ .children \a .children \div .children \img .clone! .css(\left, - $ @ .width!*1.5 + \px) .appendTo $ \#info
+            $ "\#info img" .animate {left:\10%}
           else
             <- $ "\#col#j" .animate {bottom:-col-height*1.5 + \px}
-            $ @ .children \a .children \div .children \img .clone! .appendTo $ \#info
+            $ @ .children \a .children \div .children \img .clone! .css(\left, - $ @ .width!*1.5 + \px) .appendTo $ \#info
+            $ "\#info img" .animate {left:\10%}
         else if j % 2 == 1
           $ "\#col#j" .delay 50*j .animate {top:-col-height/2 + \px}
         else
