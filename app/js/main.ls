@@ -109,11 +109,11 @@ profile = ->
       for let j from 1 to 13
         if j == i
           if j % 2 == 1
-            <- $ "\#col#j" .animate {top:-col-height*1.5 + \px}
+            <- $ "\#col#j" .animate {top:\-60vh}
             $ @ .children \a .children \div .children \img .clone! .css(\left, - $ @ .width!*5 + \px) .appendTo $ \#info
             $ "\#info img" .animate {left:\10%}
           else
-            <- $ "\#col#j" .animate {bottom:-col-height*1.5 + \px}
+            <- $ "\#col#j" .animate {bottom:\-60vh}
             $ @ .children \a .children \div .children \img .clone! .css(\left, - $ @ .width!*5 + \px) .appendTo $ \#info
             $ "\#info img" .animate {left:\10%}
         else if j % 2 == 1
