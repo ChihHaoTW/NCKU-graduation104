@@ -47,6 +47,10 @@ $ !->
                   <a class='ss-circle ss-circle-3'> #{event.content} </a>
                 </div>
                 <div class='ss-right'>
+                  <h3>
+                    <span>November 22, 2011</span>
+                    <a> #{event.tittle} </a>
+                  </h3>
                 </div>
               </div>
             ")
@@ -116,7 +120,7 @@ profile = ->
           $ "\#col#j" .delay 50*j .animate {top:-col-height/2 + \px}
         else
           $ "\#col#j" .delay 50*j .animate {bottom:-col-height/2 + \px}
-        $ "\#col#j" .animate {opacity:"0.8"}
+        $ "\#col#j" .animate {opacity:"0.5"}
 
 
 # vi:et:ft=ls:nowrap:sw=2:ts=2

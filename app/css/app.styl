@@ -5,11 +5,27 @@ html
   overflow-x hidden
   max-width 100%
 
-.ui.menu.secondary.pointing
+#menu
   position fixed
   z-index 99
   width 100vw
   background-color rgba(255, 255, 255, 0.6)
+
+#menu .ui.secondary.pointing.menu
+  width 100%
+  position absolute
+  display inline
+  
+#logo
+  display inline
+
+#logo img
+  height auto
+  width 20rem
+  box-shadow 0px 0px
+
+#menu .right.menu
+  margin-right 20rem
 
 #book
   position relative
@@ -35,6 +51,9 @@ html
   margin-top 0
   padding 0 0 0 0
 
+.info h1
+  bottom 0px
+
 img
   display inline
   box-shadow 0px 0px 9px 0px rgba(20%,20%,40%,0.5)
@@ -46,7 +65,7 @@ img
   margin-bottom 2.5%
 
 #row_1 .column
-  padding 10px
+  padding 15px
   
 #row_2 .column img
   margin-top 2.5%
@@ -54,7 +73,7 @@ img
 #row_2 .column
   width 10%
   display table-cell
-  padding 10px
+  padding 15px
 
 #row_1
   bottom 45vh
@@ -99,7 +118,6 @@ label h3
   padding 0
 
 #info
-  background-color red
   position absolute
   width 100vw
   top 50%
@@ -107,6 +125,7 @@ label h3
 
 #info img
   width auto
+
   
 
 
