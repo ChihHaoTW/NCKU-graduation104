@@ -60,6 +60,7 @@ gulp.task \server ->
   routes = require \./routes.ls
   routes.init express-server
   routes.getEvent!
+  routes.sendReply!
   express-server.use express.static paths.build
   express-server.listen port
   gulp-util.log "Listening on port: #port"

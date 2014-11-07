@@ -89,6 +89,7 @@ $ !->
 
   resize!
   profile!
+  reply!
 
 mask = ->
   $ \body .append "<div id='mask'></div>"
@@ -121,6 +122,28 @@ profile = ->
         else
           $ "\#col#j" .delay 50*j .animate {bottom:-col-height/2 + \px}
         $ "\#col#j" .animate {opacity:"0.5"}
+
+reply = ->
+  $ \#reply .click ->
+    temp =
+      name: $ \#name .val!
+      department: $ \#department .val!
+      email: $ \#email .val!
+      comment: $ \#comment .val!
+
+    console.log temp
+
+    $.ajax {
+      type: \POST
+      url: \/writeReply
+      contentType: \application/json
+      data: JSON.stringify temp
+      success: ->
+        console.log "Post success!"
+    }
+
+
+
 
 
 # vi:et:ft=ls:nowrap:sw=2:ts=2

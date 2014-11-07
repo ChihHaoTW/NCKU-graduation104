@@ -1,17 +1,25 @@
-require! <[jsonfile]>
+require! <[jsonfile body-parser]>
 
 module.exports =
   init: (server) !->
-    this.server = server
+    jsonfile.spaces = 4
+    @app = server
+    @app.use bodyParser.json!
+    @app.use bodyParser.urlencoded {+extended}
 
   getEvent: !->
     event = jsonfile.readFileSync \event.json
-    this.server.get \/loadEvent (req, res) !->
+    @app.get \/loadEvent (req, res) !->
       res.send event
       res.end!
 
-  #sendReply: !->
-   # this.server.post \writeReply (req, res) !->
+  sendReply: !->
+    @app.post \/writeReply (req, res) !->
+      json-ary = jsonfile.readFileSync \comment.json
+      json-ary.data.push req.body
+      jsonfile.writeFileSync \comment.json, json-ary
+      res.send json-ary
+
 
 
 # vi:et:ft=ls:nowrap:sw=2:ts=2

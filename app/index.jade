@@ -168,23 +168,23 @@ html(lang="zh-tw")
               .ui.field.large.input
                 label 
                   h3(style="font-weight:bold") 姓名
-                input(placeholder="Name" type="text")
+                input#name(placeholder="Name" type="text")
               .ui.field.large.input
                 label 
                   h3(style="font-weight:bold") 系級 
-                input(placeholder="Department" type="text")
+                input#department(placeholder="Department" type="text")
             .ui.field.large.input
               label 
                 h3(style="font-weight:bold") 電子信箱
-              input(placeholder="E-mail address" type="text")
+              input#email(placeholder="E-mail address" type="text")
             .ui.field.large.input
               label 
                 h3(style="font-weight:bold") Comment
-              textarea(style="height:auto")
+              textarea#comment(style="height:auto")
             .ui.buttons
               .ui.button Cancel
               .or
-              .ui.button.positive Reply
+              .ui.button.positive#reply Reply
         br      
 
     //- #mask
