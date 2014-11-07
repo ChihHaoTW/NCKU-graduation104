@@ -138,6 +138,8 @@ reply = ->
       url: \/writeReply
       contentType: \application/json
       data: JSON.stringify temp
+      beforeSend: ->
+        $ \#reply .addClass \loading
       success: ->
         console.log "Post success!"
     }

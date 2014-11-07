@@ -16,7 +16,7 @@ module.exports =
   sendReply: !->
     @app.post \/writeReply (req, res) !->
       json-ary = jsonfile.readFileSync \comment.json
-      json-ary.data.push req.body
+      json-ary.push req.body
       jsonfile.writeFileSync \comment.json, json-ary
       res.send json-ary
 
