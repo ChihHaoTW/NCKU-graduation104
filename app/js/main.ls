@@ -72,10 +72,10 @@ $ !->
 
       if i == 1
         $ "\#page_#pre-state_" .hide!
-        <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
-        $ \#ss-links .animate {left: "10px"}, 100
+        $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+        # $ \#ss-links .animate {left: "10px"}, 100
       else if pre-state_ == 1
-        $ \#ss-links .animate {left: "-#{$ \#ss-links .width!}"}, 100
+        # $ \#ss-links .animate {left: "-#{$ \#ss-links .width!}"}, 100
         $ \#book .animate {right: $('#page_'+i).position!.left}, 500
         $ "\#page_#pre-state_" .hide!
       else
@@ -123,8 +123,10 @@ profile = ->
           $ "\#col#j" .delay 50*j .animate {bottom:-col-height/2 + \px}
         $ "\#col#j" .animate {opacity:"0.5"}
 
+reply-click = true
 reply = ->
   $ \#reply .click ->
+    return if not reply-click
     temp =
       name: $ \#name .val!
       department: $ \#department .val!
@@ -139,9 +141,20 @@ reply = ->
       contentType: \application/json
       data: JSON.stringify temp
       beforeSend: ->
+        reply-click := false
         $ \#reply .addClass \loading
       success: ->
         console.log "Post success!"
+        $ \#reply .removeClass \loading .text \DONE! .css \cursor, \default
+      complete: ->
+        $ \#name .val ''
+        $ \#department .val ''
+        $ \#email .val ''
+        $ \#comment .val ''
+        setTimeout ->
+          $ \#reply .text \Reply .css \cursor, \pointer
+          reply-click := true
+        , 3000
     }
 
 
