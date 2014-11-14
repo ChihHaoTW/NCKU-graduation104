@@ -88,7 +88,6 @@ $ !->
   #  mask!
 
   resize!
-  profile!
   reply!
 
 mask = ->
