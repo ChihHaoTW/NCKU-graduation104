@@ -14,7 +14,7 @@ h2.ss-subtitle{
 
 .ss-links{
 	position: fixed;
-  margin-left: -20px;
+  margin-left: -17px;
   left: 50%;
 	top: 40%;
 	width: 40px;
@@ -63,7 +63,7 @@ h2.ss-subtitle{
     background: #9FA0A0;
     top: 70px;
     left: 50%;
-	margin-left: 2px;
+	margin-left: 6px;
     content: '';
     height: 100%;
 }
