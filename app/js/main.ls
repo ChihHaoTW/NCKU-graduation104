@@ -82,6 +82,9 @@ $ !->
         $ \#book .animate {right: $('#page_'+i).position!.left}, 500
         $ "\#page_#pre-state_" .hide!
 
+      if i == 2
+        css!
+
       console.log winWidth
 
   #$ \.info .click !->
@@ -89,6 +92,7 @@ $ !->
 
   resize!
   reply!
+  #css!
 
 mask = ->
   $ \body .append "<div id='mask'></div>"
@@ -156,7 +160,9 @@ reply = ->
         , 3000
     }
 
-
+css = ->
+  $ \#profile-content .css \height, \100%
+  $ \#profile-content .css(\height, $ \#profile-content .height! - 12)
 
 
 
