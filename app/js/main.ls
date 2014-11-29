@@ -185,6 +185,7 @@ profile = ->
         $ "\#profile-0 img" .animate {left:""}
         $ "\#profile-#i img" .animate {top:""}
         $ "\#profile-#i" .animate {borderTopColor: profile-map[old-id][\color]}
+        $ "\#name-#i p" .text profile-map[old-id][\name] .animate {color: profile-map[old-id][\color]}
       else
         <- $ @ .children \img .animate {bottom:\-60vh}
         do
@@ -200,6 +201,7 @@ profile = ->
         $ "\#profile-0 img" .animate {left:""}
         $ "\#profile-#i img" .animate {bottom:""}
         $ "\#profile-#i" .animate {borderBottomColor: profile-map[old-id][\color]}
+        $ "\#name-#i p" .text profile-map[old-id][\name] .animate {color: profile-map[old-id][\color]}
 
 pro = ->
   for let i from 1 to 13
