@@ -92,7 +92,7 @@ $ !->
 
   resize!
   reply!
-  #css!
+  pro!
 
 mask = ->
   $ \body .append "<div id='mask'></div>"
@@ -100,6 +100,28 @@ mask = ->
   $ \#mask .click ->
     <- $ \#mask .animate {opacity:"0"}
     $ \#mask .remove!
+
+pro = ->
+  for let i from 1 to 12
+    $ "\#profile-#i" .click !->
+      if i % 2 == 1
+        <- $ @ .children \img .animate {top:\-60vh}
+        <- $ "\#profile-0 img" .animate {left:- $ "\#profile-0 img" .width!*2 + \px}
+        $ "\#profile-#i" .append($ "\#profile-0 img" .detach!)
+        $ "\#profile-0" .append($ "\#profile-#i img:first-child" .detach!)
+        $ "\#profile-#i img" .css {left: "", top:\-60vh}
+        $ "\#profile-0 img" .css {left:- $ "\#profile-0 img" .width!*2 + \px, top:""}
+        $ "\#profile-0 img" .animate {left:""}
+        $ "\#profile-#i img" .animate {top:""}
+      else
+        <- $ @ .children \img .animate {bottom:\-60vh}
+        <- $ "\#profile-0 img" .animate {left:- $ "\#profile-0 img" .width!*2 + \px}
+        $ "\#profile-#i" .append($ "\#profile-0 img" .detach!)
+        $ "\#profile-0" .append($ "\#profile-#i img:first-child" .detach!)
+        $ "\#profile-#i img" .css {left: "", bottom:\-60vh}
+        $ "\#profile-0 img" .css {left:- $ "\#profile-0 img" .width!*2 + \px, bottom:""}
+        $ "\#profile-0 img" .animate {left:""}
+        $ "\#profile-#i img" .animate {bottom:""}
 
 profile = ->
   for let i from 1 to 13
