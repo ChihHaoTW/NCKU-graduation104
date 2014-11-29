@@ -3,42 +3,55 @@ profile-map =
   \1 :
     \office : \會長
     \name : \李念庭
+    \color : \#2EA7E0
   \2 :
     \office : \副會長
     \name : \陳沛瑾
+    \color : \#2EA7E0
   \3 :
     \office : \財務秘書
     \name : \王芷苑
+    \color : \#2EA7E0
   \4 :
     \office : \行政秘書
     \name : \湯又明
+    \color : \#2EA7E0
   \5 :
     \office : \活動部長
     \name : \賴弈豪
+    \color : \#F39800
   \6 :
     \office : \活動部長
     \name : \陳侑新
+    \color : \#F39800
   \7 :
     \office : \宣傳部長
     \name : \薛智豪
+    \color : \#E61673
   \8 :
     \office : \宣傳部長
     \name : \郭芳萍
+    \color : \#E61673
   \9 :
     \office : \編輯部長
     \name : \吳泓瑞
+    \color : \#C30D23
   \10 :
     \office : \編輯部長
     \name : \彭霆博
+    \color : \#C30D23
   \11 :
     \office : \公關學術部
     \name : \劉力慈
+    \color : \#43B9AE
   \12 :
     \office : \公關學術部
     \name : \楊子平
+    \color : \#43B9AE
   \13 :
     \office : \畢典負責人
     \name : \陳貞霓
+    \color : \#74BB32
 
 $ !->
 
@@ -167,7 +180,6 @@ pro = ->
         <- $ @ .children \img .animate {bottom:\-60vh}
         do
           <- $ "\#cur-profile .name, \#cur-profile .office" .animate {opacity: 0}
-          console.log \YYYYYYYYYY
           $ "\#cur-profile .name" .text profile-map[new-id][\name]
           $ "\#cur-profile .office" .text profile-map[new-id][\office]
           $ @ .animate {opacity: 1}
