@@ -158,6 +158,9 @@ mask = ->
 
 profile = ->
   for let i from 1 to 12
+
+    $ "\#name-#i p" .text profile-map[(($ "\#profile-#i" .children \img .attr \id) / \-).1][\name] .css \color, profile-map[(($ "\#profile-#i" .children \img .attr \id) / \-).1][\color]
+
     if i % 2 == 1
       $ "\#profile-#i" .css \borderTopColor, profile-map[(($ "\#profile-#i" .children \img .attr \id) / \-).1][\color]
     else
