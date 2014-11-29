@@ -147,7 +147,7 @@ $ !->
 
   resize!
   reply!
-  pro!
+  profile!
 
 mask = ->
   $ \body .append "<div id='mask'></div>"
@@ -156,8 +156,13 @@ mask = ->
     <- $ \#mask .animate {opacity:"0"}
     $ \#mask .remove!
 
-pro = ->
+profile = ->
   for let i from 1 to 12
+    if i % 2 == 1
+      $ "\#profile-#i" .css \borderTopColor, profile-map[(($ "\#profile-#i" .children \img .attr \id) / \-).1][\color]
+    else
+      $ "\#profile-#i" .css \borderBottomColor, profile-map[(($ "\#profile-#i" .children \img .attr \id) / \-).1][\color]
+
     $ "\#profile-#i" .click !->
       new-id = (($ @ .children \img .attr \id) / \-).1
       old-id = (($ "\#profile-0" .children \img .attr \id) / \-).1
@@ -176,6 +181,7 @@ pro = ->
         $ "\#profile-0 img" .css {left:- $ "\#profile-0 img" .width!*2 + \px, top:""}
         $ "\#profile-0 img" .animate {left:""}
         $ "\#profile-#i img" .animate {top:""}
+        $ "\#profile-#i" .animate {borderTopColor: profile-map[old-id][\color]}
       else
         <- $ @ .children \img .animate {bottom:\-60vh}
         do
@@ -190,8 +196,9 @@ pro = ->
         $ "\#profile-0 img" .css {left:- $ "\#profile-0 img" .width!*2 + \px, bottom:""}
         $ "\#profile-0 img" .animate {left:""}
         $ "\#profile-#i img" .animate {bottom:""}
+        $ "\#profile-#i" .animate {borderBottomColor: profile-map[old-id][\color]}
 
-profile = ->
+pro = ->
   for let i from 1 to 13
     $ "\#col#i" .click !->
       col-height = $ "\#col1" .height!
