@@ -146,8 +146,16 @@ mask = ->
 pro = ->
   for let i from 1 to 12
     $ "\#profile-#i" .click !->
+      new-id = (($ @ .children \img .attr \id) / \-).1
+      old-id = (($ "\#profile-0" .children \img .attr \id) / \-).1
+
       if i % 2 == 1
         <- $ @ .children \img .animate {top:\-60vh}
+        do
+          <- $ "\#cur-profile .name, \#cur-profile .office" .animate {opacity: 0}
+          $ "\#cur-profile .name" .text profile-map[new-id][\name]
+          $ "\#cur-profile .office" .text profile-map[new-id][\office]
+          $ @ .animate {opacity: 1}
         <- $ "\#profile-0 img" .animate {left:- $ "\#profile-0 img" .width!*2 + \px}
         $ "\#profile-#i" .append($ "\#profile-0 img" .detach!)
         $ "\#profile-0" .append($ "\#profile-#i img:first-child" .detach!)
@@ -157,6 +165,12 @@ pro = ->
         $ "\#profile-#i img" .animate {top:""}
       else
         <- $ @ .children \img .animate {bottom:\-60vh}
+        do
+          <- $ "\#cur-profile .name, \#cur-profile .office" .animate {opacity: 0}
+          console.log \YYYYYYYYYY
+          $ "\#cur-profile .name" .text profile-map[new-id][\name]
+          $ "\#cur-profile .office" .text profile-map[new-id][\office]
+          $ @ .animate {opacity: 1}
         <- $ "\#profile-0 img" .animate {left:- $ "\#profile-0 img" .width!*2 + \px}
         $ "\#profile-#i" .append($ "\#profile-0 img" .detach!)
         $ "\#profile-0" .append($ "\#profile-#i img:first-child" .detach!)
@@ -227,7 +241,6 @@ reply = ->
 css = ->
   $ \#profile-content .css \height, \100%
   $ \#profile-content .css(\height, $ \#profile-content .height! - 12)
-
 
 
 # vi:et:ft=ls:nowrap:sw=2:ts=2
