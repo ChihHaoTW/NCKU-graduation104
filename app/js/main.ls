@@ -469,9 +469,8 @@ profile = ->
       new-id = (($ "\#profile-#i" .children \img .attr \id) / \-).1
       old-id = (($ "\#profile-0" .children \img .attr \id) / \-).1
 
-      $ \#profile-content .css(\z-index, 4).animate {backgroundColor : "rgba(255, 255, 255, 0.9)"}
-
-      $ \#experience .empty!
+      $ "\#experience, \#say" .empty!
+      <- $ \#profile-content .css(\z-index, 4).animate {backgroundColor : "rgba(255, 255, 255, 0.9)"}
       for let year, exp of profile-map[new-id][\experience]
         return if $.isEmptyObject exp
         $ \#experience .append "<h2> #year </h2>"
@@ -479,7 +478,6 @@ profile = ->
           $ \#experience .append "<h3> #event </h3>"
         $ \#experience .append \<br/>
       $ "\#experience h2" .css \color, profile-map[new-id][\color]
-
       $ \#say .empty!
         .append profile-map[new-id][\say]
         .append "
