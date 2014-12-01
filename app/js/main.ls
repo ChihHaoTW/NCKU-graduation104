@@ -203,7 +203,7 @@ profile-map =
   \9 :
     office : \編輯部長
     name : \吳泓瑞
-    depart : "公設 103"
+    depart : "工設 103"
     color : \#C30D23
     experience :
       \2011 : [
@@ -484,7 +484,7 @@ profile = ->
         .append profile-map[new-id][\say]
         .append "
           <div class='sign'>
-            <h2> － #{profile-map[new-id][\depart]} #{profile-map[new-id][\name]}
+            <h2> － #{profile-map[new-id][\depart]} 
               <img src='/res/images/sign/#new-id.png'/>
             </h2>
           </div>"

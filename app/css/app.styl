@@ -67,18 +67,27 @@ html
     .img
       cursor pointer
       border-top #FFF 7px solid
+      transition opacity .3s ease-in-out
+    .img:hover
+      opacity 0.4
   #row-2-2 .column
     padding 1px 1px 0px 1px
     // vertical-align bottom
     .img
       cursor pointer
       border-bottom #FFF 7px solid
+      transition opacity .4s ease-in-out
+    .img:hover
+      opacity 0.4
 
 #row-1 .column
   padding 0px
   text-align center
   .two.wide.column
     cursor pointer
+    transition background .4s ease-in-out
+  .two.wide.column:hover
+    background rgba(0, 0, 0, 0.07)
   p
     height 1.5rem
     line-height 1.5rem
@@ -95,6 +104,9 @@ html
   text-align center
   .two.wide.column
     cursor pointer
+    transition background .4s ease-in-out
+  .two.wide.column:hover
+    background rgba(0, 0, 0, 0.07)
   p
     height 1.5rem
     line-height 1.5rem
