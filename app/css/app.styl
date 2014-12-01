@@ -65,16 +65,20 @@ html
     padding 0px 1px 1px 1px
     vertical-align top
     .img
+      cursor pointer
       border-top #FFF 7px solid
   #row-2-2 .column
     padding 1px 1px 0px 1px
     // vertical-align bottom
     .img
+      cursor pointer
       border-bottom #FFF 7px solid
 
 #row-1 .column
   padding 0px
   text-align center
+  .two.wide.column
+    cursor pointer
   p
     height 1.5rem
     line-height 1.5rem
@@ -89,6 +93,8 @@ html
 #row-3 .column
   padding 0px
   text-align center
+  .two.wide.column
+    cursor pointer
   p
     height 1.5rem
     line-height 1.5rem
@@ -102,9 +108,42 @@ html
 
 #profile-content
   position absolute
+  display flex
   height 100%
   top 6px
-  background-color red
+  background-color rgba(255, 255, 255, 0)
+  z-index -4
+  overflow-y auto
+
+#experience
+  flex 5
+  height auto
+  max-height 100%
+  margin auto 0
+  padding-left 8%
+  h2
+    font-size 1.5rem
+  h3
+    line-height 1.5rem
+
+#say
+  flex 4
+  line-height 1.5rem
+  margin auto 0
+  height auto
+  width auto
+  padding-left 7px
+  padding-right 10px
+  .sign
+    margin-top 5%
+    h2
+      text-align right
+      font-size 1.2rem
+      img
+        vertical-align -30px
+        margin-right 10%
+        margin-left 5%
+        max-width 30%
 
 #cur-profile 
   position relative
