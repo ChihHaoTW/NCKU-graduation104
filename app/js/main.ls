@@ -367,16 +367,16 @@ $ !->
 
     for let year in json
       for let month in year.content
-        $ \#ss-container .append("
-				<div class='ss-row'>
-          <div class='ss-left'>
-            <h2 id='#{month.month}'>#{month.month}</h2>
-          </div>
-          <div class='ss-right'>
-            <h2>#{year.year}</h2>
-          </div>
-        </div>
-        ")
+        # $ \#ss-container .append("
+				# <div class='ss-row'>
+        #   <div class='ss-left'>
+        #     <h2 id='#{month.month}'>#{month.month}</h2>
+        #   </div>
+        #   <div class='ss-right'>
+        #     <h2>#{year.year}</h2>
+        #   </div>
+        # </div>
+        # ")
         for let day in month.content
           event = day.content
           count_ = count++ % 2
