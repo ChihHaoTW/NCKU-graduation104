@@ -47,8 +47,10 @@ gulp.task \js ->
     .pipe livereload!
 
 gulp.task \res ->
-  gulp.src paths.app+\/res/**
+  gulp.src [paths.app+\/res/**, paths.app+\!/res/fonts/**]
     .pipe gulp.dest paths.build+\/res
+  gulp.src paths.app+\/res/fonts/**
+    .pipe gulp.dest paths.build+\/res/fonts
   gulp.src main-bower-files!, { base: \./bower_components } .pipe gulp-filter \**/fonts/*
     .pipe gulp-rename -> it.dirname = ''
     .pipe gulp.dest paths.build+\/fonts
