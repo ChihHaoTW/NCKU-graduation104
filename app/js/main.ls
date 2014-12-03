@@ -353,6 +353,10 @@ profile-map =
 
 $ !->
 
+  for let i from 1 to 13
+    <- $.imgpreload "/res/images/sign/#i.png"
+    console.log i
+
   $ \#page_2 .hide!
   $ \#page_3 .hide!
 
