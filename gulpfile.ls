@@ -12,6 +12,10 @@ paths =
 tiny-lr-server = tiny-lr!
 livereload = -> gulp-livereload tiny-lr-server
 
+gulp.task \json ->
+  gulp.src [paths.app+\/comment.json, paths.app+\/event.json]
+    .pipe gulp.dest paths.build
+
 gulp.task \css ->
   css-bower = gulp.src main-bower-files! .pipe gulp-filter \**/*.css
   css = gulp.src [paths.app+\/**/*.css paths.app+\!/**/reset.css]
@@ -73,8 +77,9 @@ gulp.task \watch <[build server]> ->
   gulp.watch [paths.app+\/**/*.styl,paths.app+\/**/*.css], <[css]>
   gulp.watch [paths.app+\/**/*.html,paths.app+\/**/*.jade,\README.md], <[html]>
   gulp.watch [paths.app+\/**/*.ls,paths.app+\/**/*.js], <[js]>
+  gulp.watch [paths.app+\/comment.json,paths.app+\event.json], <[json]>
 
-gulp.task \build <[css html js res]>
+gulp.task \build <[css html js res json]>
 gulp.task \default <[watch]>
 
 # vi:et:ft=ls:nowrap:sw=2:ts=2
