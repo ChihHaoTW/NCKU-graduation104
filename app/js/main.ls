@@ -439,8 +439,13 @@ $ !->
         $ \#book .animate {right: $('#page_'+i).position!.left}, 500
         $ "\#page_#pre-state_" .hide!
 
-      if i == 2
+      if i == 1
+        $ \body .css {background: "\#fff url(res/images/back.png) repeat-y top", background-size: \cover}
+      else if i == 2
+        $ \body .css \background, "\#fff"
         css!
+      else if i == 3
+        $ \body .css \background, "\#fff"
 
       console.log winWidth
 

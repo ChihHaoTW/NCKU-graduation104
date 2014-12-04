@@ -2,7 +2,7 @@
 
 /* General Demo Style */
 body{
-    background: #f7f7f7 url(res/images/back.png) repeat-y top;
+    background: #fff url(res/images/back.png) repeat-y top;
     background-size: cover;
     color: rgba(0,0,0,0.8);
     font-family: sans-serif, Arial;
