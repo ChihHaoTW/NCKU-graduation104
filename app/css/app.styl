@@ -2,12 +2,17 @@
   font-family "王漢宗細圓體"
   src url(/res/fonts/wt006.ttf)
 
+@font-face
+  font-family "王漢宗粗明體"
+  src url(/res/fonts/wt003.ttf)
+
 *, h1, h2, h3, p
   font-family "王漢宗細圓體", "微軟正黑體", "sans-serif", "Arial"
 
 html
   overflow-x hidden
   max-width 100%
+  font-size 2.5vmin
 
 #menu
   position fixed
@@ -98,6 +103,7 @@ html
     height 1.5rem
     line-height 1.5rem
     letter-spacing 1rem
+    text-indent 1rem
     font-size 1.3rem
     font-weight bolder
 
@@ -117,6 +123,7 @@ html
     height 1.5rem
     line-height 1.5rem
     letter-spacing 1rem
+    text-indent 1rem
     font-size 1.3rem
     font-weight bolder
 
@@ -166,14 +173,14 @@ html
 #cur-profile 
   position relative
   overflow-y hidden
+  font-family "王漢宗粗明體"
   .name
     position absolute
     z-index 2
-    left 4rem
+    left 3rem
     top 0px
     margin 5%
     font-size 3rem
-    font-weight bolder
     letter-spacing 0.5rem
     color #FFF
     -webkit-writing-mode vertical-lr
@@ -184,7 +191,6 @@ html
     top 0px
     margin 5%
     font-size 2rem
-    font-weight bold
     letter-spacing 0.5rem
     color #FFF
     -webkit-writing-mode vertical-lr
