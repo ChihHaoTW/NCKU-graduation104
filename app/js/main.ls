@@ -585,7 +585,7 @@ reply = ->
 
 css = ->
   $ \#profile-content .css \height, \100%
-  $ \#profile-content .css(\height, $ \#profile-content .height! - 12)
+  $ \#profile-content .css(\height, $ \#profile-content .height! - 8)
 
 
 # vi:et:ft=ls:nowrap:sw=2:ts=2
