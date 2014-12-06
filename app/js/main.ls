@@ -263,6 +263,17 @@ profile-map =
       \2014 : [
         "NVCC3 / 影記組",
         "第三屆CUL / 美宣組" ]
+    say : "
+      今年可能是自己留在台灣的最後一年，</br>
+      台灣，台南，成大，無數的記憶，</br>
+      從大四開學那一天開始，不斷的湧進腦海，</br>
+      不知道在剩下不到一年的時光裏，</br>
+      還可以用甚麼方法把這裏的印象刻在腦中，</br>
+      也或許能夠在這個地方留下自己的印記，</br>
+      為自己留下一個曾經在這裏生活過四年的證明，</br>
+      </br>
+      大家好，我叫彭霆博，是今年畢聯會的總編輯長，請多多指教。</br>
+      "
   \11 :
     office : \公關學術部
     name : \劉力慈
@@ -463,7 +474,38 @@ mask = ->
     <- $ \#mask .animate {opacity:"0"}
     $ \#mask .remove!
 
+cur-click = true
 profile = ->
+  $ \#cur-profile .click ->
+    return unless cur-click
+    cur-click := false
+    $ "\#profile-content .icon.remove" .css \visibility, \visible
+
+    new-id = (($ \#profile-0 .children \img .attr \id) / \-).1
+
+    $ "\#experience, \#say" .empty!
+    <- $ \#profile-content .css(\z-index, 4).animate {backgroundColor : "rgba(255, 255, 255, 0.9)", opacity:1}
+    for let year, exp of profile-map[new-id][\experience]
+      return if $.isEmptyObject exp
+      $ \#experience .append "<h2> #year </h2>"
+      for event in exp
+        $ \#experience .append "<h3> #event </h3>"
+      $ \#experience .append \<br/>
+    $ "\#experience h2" .css \color, profile-map[new-id][\color]
+    $ \#say .empty!
+      .append profile-map[new-id][\say]
+      .append "
+        <div class='sign'>
+          <h2> － #{profile-map[new-id][\depart]} 
+            <img src='/res/images/sign/#new-id.png'/>
+          </h2>
+        </div>"
+
+  $ "\#profile-content .icon.remove" .click !->
+    <- $ \#profile-content .animate {opacity:0}
+    $ \#profile-content .css \z-index, \-4
+    cur-click := true
+
   for let i from 1 to 12
 
     $ "\#name-#i p" .text profile-map[(($ "\#profile-#i" .children \img .attr \id) / \-).1][\name] .css \color, profile-map[(($ "\#profile-#i" .children \img .attr \id) / \-).1][\color]
@@ -474,12 +516,16 @@ profile = ->
       $ "\#profile-#i" .css \borderBottomColor, profile-map[(($ "\#profile-#i" .children \img .attr \id) / \-).1][\color]
 
     $ "\#profile-#i, \#name-#i" .click !->
+      cur-click := false
+
       new-id = (($ "\#profile-#i" .children \img .attr \id) / \-).1
       old-id = (($ "\#profile-0" .children \img .attr \id) / \-).1
 
+      $ "\#profile-content .icon.remove" .css \visibility, \visible
+
       do
         $ "\#experience, \#say" .empty!
-        <- $ \#profile-content .css(\z-index, 4).animate {backgroundColor : "rgba(255, 255, 255, 0.9)"}
+        <- $ \#profile-content .css(\z-index, 4).animate {backgroundColor : "rgba(255, 255, 255, 0.9)", opacity:1}
         for let year, exp of profile-map[new-id][\experience]
           return if $.isEmptyObject exp
           $ \#experience .append "<h2> #year </h2>"
