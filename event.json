@@ -8,7 +8,7 @@
           {
             "day" : 20,
             "content" :   {
-              "scale" : "ss-large",
+              "scale" : "ss-medium",
               "date" : "date",
               "tittle" : "tittle",
               "locate" : "locate",
@@ -18,7 +18,7 @@
           {
             "day" : 30,
             "content" :   {
-              "scale" : "ss-large",
+              "scale" : "ss-medium",
               "date" : "date",
               "tittle" : "tittle",
               "locate" : "locate",
@@ -33,7 +33,7 @@
           {
             "day" : 15,
             "content" :   {
-              "scale" : "ss-large",
+              "scale" : "ss-medium",
               "date" : "date",
               "tittle" : "tittle",
               "locate" : "locate",
@@ -43,7 +43,7 @@
           {
             "day" : 25,
             "content" :   {
-              "scale" : "ss-large",
+              "scale" : "ss-medium",
               "date" : "date",
               "tittle" : "tittle",
               "locate" : "locate",
@@ -63,7 +63,7 @@
           {
             "day" : 20,
             "content" :   {
-              "scale" : "ss-large",
+              "scale" : "ss-medium",
               "date" : "date",
               "tittle" : "tittle",
               "locate" : "locate",
@@ -73,7 +73,7 @@
           {
             "day" : 30,
             "content" :   {
-              "scale" : "ss-large",
+              "scale" : "ss-medium",
               "date" : "date",
               "tittle" : "tittle",
               "locate" : "locate",
@@ -88,7 +88,7 @@
           {
             "day" : 15,
             "content" :   {
-              "scale" : "ss-large",
+              "scale" : "ss-medium",
               "date" : "date",
               "tittle" : "tittle",
               "locate" : "locate",
@@ -98,7 +98,7 @@
           {
             "day" : 25,
             "content" :   {
-              "scale" : "ss-large",
+              "scale" : "ss-medium",
               "date" : "date",
               "tittle" : "tittle",
               "locate" : "locate",
