@@ -479,6 +479,7 @@ profile = ->
   $ \#cur-profile .click ->
     return unless cur-click
     cur-click := false
+    $ \#cur-profile .removeClass \pointer
     $ "\#profile-content .icon.remove" .css \visibility, \visible
 
     new-id = (($ \#profile-0 .children \img .attr \id) / \-).1
@@ -505,6 +506,7 @@ profile = ->
     <- $ \#profile-content .animate {opacity:0}
     $ \#profile-content .css \z-index, \-4
     cur-click := true
+    $ \#cur-profile .addClass \pointer
 
   for let i from 1 to 12
 
@@ -517,6 +519,7 @@ profile = ->
 
     $ "\#profile-#i, \#name-#i" .click !->
       cur-click := false
+      $ \#cur-profile .removeClass \pointer
 
       new-id = (($ "\#profile-#i" .children \img .attr \id) / \-).1
       old-id = (($ "\#profile-0" .children \img .attr \id) / \-).1
@@ -610,7 +613,7 @@ reply = ->
       email: $ \#email .val!
       comment: $ \#comment .val!
 
-    console.log temp
+    # console.log temp
 
     $.ajax {
       type: \POST
