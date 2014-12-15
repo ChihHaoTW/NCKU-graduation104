@@ -605,15 +605,39 @@ pro = ->
 
 reply-click = true
 reply = ->
-  $ \#reply .click ->
+  $ \#cancel .click !->
+    $ \#name .val ''
+    $ \#department .val ''
+    $ \#email .val ''
+    $ \#comment .val ''
+
+  $ \#reply .click !->
+    if $ \#name .val! == "" or $ \#department .val! == "" or $ \#comment .val! == ""  or $ \#email .val! is not /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      if $ \#name .val! == ""
+        $ \#name .parent \.ui.input .addClass \error
+      if $ \#department .val! == ""
+        $ \#department .parent \.ui.input .addClass \error
+      if $ \#comment .val! == ""
+        $ \#comment .parent \.ui.input .addClass \error
+      if $ \#email .val! is not /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        $ \#email .parent \.ui.input .addClass \error
+      return
+    else
+      if $ \#name .val! !== ""
+        $ \#name .parent \.ui.input .removeClass \error
+      if $ \#department .val! !== ""
+        $ \#department .parent \.ui.input .removeClass \error
+      if $ \#comment .val! !== ""
+        $ \#comment .parent \.ui.input .removeClass \error
+      if $ \#email .val! is /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        $ \#email .parent \.ui.input .removeClass \error
+
     return if not reply-click
     temp =
       name: $ \#name .val!
       department: $ \#department .val!
       email: $ \#email .val!
       comment: $ \#comment .val!
-
-    # console.log temp
 
     $.ajax {
       type: \POST
