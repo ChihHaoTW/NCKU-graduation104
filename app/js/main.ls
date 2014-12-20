@@ -490,6 +490,7 @@ download = ->
             <h3> #{file.date} </h3>
           </div>
           <div class='one wide column'>
+            <a href='#{file.dir}'>
             <i class='icon large link #{
               if exten is ('rar' or 'zip' or '7z') then 'file archive outline'
               else if exten is ('mp3' or 'wav' or 'wma' or 'flac') then 'file audio outline'
@@ -500,7 +501,9 @@ download = ->
               else if exten is ('mp4' or 'mov' or 'avi' or 'wmv' or 'mts' or 'm2ts' or 'mpg' or 'mpeg' or 'mpg' or 'mpeg') then 'file video outline'
               else if exten is ('doc' or 'docx') then 'file word outline'
               else 'file outline'
-            }'></i>
+            }'>
+            </i>
+            </a>
           </div>
         </div>
       "
