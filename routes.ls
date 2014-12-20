@@ -22,6 +22,11 @@ module.exports =
         res.send json-ary
       , 3000
 
+  getFiles: !->
+    file = jsonfile.readFileSync \file.json
+    @app.get \/loadFiles (req, res) !->
+      res.send file
+      res.end!
 
 
 # vi:et:ft=ls:nowrap:sw=2:ts=2

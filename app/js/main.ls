@@ -370,8 +370,9 @@ $ !->
 
   $ \#page_2 .hide!
   $ \#page_3 .hide!
+  $ \#page_4 .hide!
 
-  state = 3
+  state = 4
   pre-state = 1
   count = 0
   winWidth = $ window .width!
@@ -395,7 +396,7 @@ $ !->
           event = day.content
           count_ = count++ % 2
           if count_ == 0
-            $ \#ss-container .append("
+            $ \#ss-container .append "
               <div class='ss-row #{event.scale}'>
                 <div class='ss-left'>
                   <h3>
@@ -407,9 +408,9 @@ $ !->
                   <a class='ss-circle ss-circle-3'> #{event.content} </a>
                 </div>
               </div>
-            ")
+            "
           else
-            $ \#ss-container .append("
+            $ \#ss-container .append "
               <div class='ss-row #{event.scale}'>
                 <div class='ss-left'>
                   <a class='ss-circle ss-circle-3'> #{event.content} </a>
@@ -421,7 +422,7 @@ $ !->
                   </h3>
                 </div>
               </div>
-            ")
+            "
 
     scroll!
 
@@ -466,6 +467,7 @@ $ !->
   resize!
   reply!
   profile!
+  download!
 
 mask = ->
   $ \body .append "<div id='mask'></div>"
@@ -473,6 +475,35 @@ mask = ->
   $ \#mask .click ->
     <- $ \#mask .animate {opacity:"0"}
     $ \#mask .remove!
+
+download = ->
+  $.getJSON \/loadFiles (json) !->
+    for let file in json
+      exten = file.dir.split \. .pop!.toLowerCase!
+      console.log exten
+      $ "\#file .grid" .append "
+        <div class='row'>
+          <div class='thirteen wide column'>
+            <h3> #{file.name} </h3>
+          </div>
+          <div class='two wide column'>
+            <h3> #{file.date} </h3>
+          </div>
+          <div class='one wide column'>
+            <i class='icon large link #{
+              if exten is ('rar' or 'zip' or '7z') then 'file archive outline'
+              else if exten is ('mp3' or 'wav' or 'wma' or 'flac') then 'file audio outline'
+              else if exten is ('xls' or 'xlsx') then 'file excel outline'
+              else if exten is ('jpg' or 'jpeg' or 'png' or 'gif' or 'bmp' or 'tif' or 'tiff') then 'file image outline'
+              else if exten is ('pdf') then 'file pdf outline'
+              else if exten is ('ppt' or 'pptx') then 'file powerpoint outline'
+              else if exten is ('mp4' or 'mov' or 'avi' or 'wmv' or 'mts' or 'm2ts' or 'mpg' or 'mpeg' or 'mpg' or 'mpeg') then 'file video outline'
+              else if exten is ('doc' or 'docx') then 'file word outline'
+              else 'file outline'
+            }'></i>
+          </div>
+        </div>
+      "
 
 cur-click = true
 profile = ->

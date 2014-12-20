@@ -67,6 +67,7 @@ gulp.task \server ->
   routes.init express-server
   routes.getEvent!
   routes.sendReply!
+  routes.getFiles!
   express-server.use express.static paths.build
   express-server.listen port
   gulp-util.log "Listening on port: #port"
