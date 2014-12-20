@@ -490,19 +490,19 @@ download = ->
             <h3> #{file.date} </h3>
           </div>
           <div class='one wide column'>
-            <a href='#{file.dir}'>
-            <i class='icon large link #{
-              if exten is ('rar' or 'zip' or '7z') then 'file archive outline'
-              else if exten is ('mp3' or 'wav' or 'wma' or 'flac') then 'file audio outline'
-              else if exten is ('xls' or 'xlsx') then 'file excel outline'
-              else if exten is ('jpg' or 'jpeg' or 'png' or 'gif' or 'bmp' or 'tif' or 'tiff') then 'file image outline'
-              else if exten is ('pdf') then 'file pdf outline'
-              else if exten is ('ppt' or 'pptx') then 'file powerpoint outline'
-              else if exten is ('mp4' or 'mov' or 'avi' or 'wmv' or 'mts' or 'm2ts' or 'mpg' or 'mpeg' or 'mpg' or 'mpeg') then 'file video outline'
-              else if exten is ('doc' or 'docx') then 'file word outline'
-              else 'file outline'
-            }'>
-            </i>
+            <a href='#{file.dir}' download='#{file.name}'>
+              <i class='icon large link #{
+                if exten is ('rar' or 'zip' or '7z') then 'file archive outline'
+                else if exten is ('mp3' or 'wav' or 'wma' or 'flac') then 'file audio outline'
+                else if exten is ('xls' or 'xlsx') then 'file excel outline'
+                else if exten is ('jpg' or 'jpeg' or 'png' or 'gif' or 'bmp' or 'tif' or 'tiff') then 'file image outline'
+                else if exten is ('pdf') then 'file pdf outline'
+                else if exten is ('ppt' or 'pptx') then 'file powerpoint outline'
+                else if exten is ('mp4' or 'mov' or 'avi' or 'wmv' or 'mts' or 'm2ts' or 'mpg' or 'mpeg' or 'mpg' or 'mpeg') then 'file video outline'
+                else if exten is ('doc' or 'docx') then 'file word outline'
+                else 'file outline'
+              }'>
+              </i>
             </a>
           </div>
         </div>
