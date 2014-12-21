@@ -400,7 +400,7 @@ $ !->
               <div class='ss-row #{event.scale}'>
                 <div class='ss-left'>
                   <h3>
-                    <span>November 22, 2011</span>
+                    <span>#{month.month}, #{year.year}</span>
                     <a> #{event.tittle} </a>
                   </h3>
                 </div>
@@ -417,7 +417,7 @@ $ !->
                 </div>
                 <div class='ss-right'>
                   <h3>
-                    <span>November 22, 2011</span>
+                    <span>#{month.month}, #{year.year}</span>
                     <a> #{event.tittle} </a>
                   </h3>
                 </div>
