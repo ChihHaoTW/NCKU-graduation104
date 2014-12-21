@@ -9,6 +9,8 @@ paths =
   app: \app
   build: \public
 
+files-dir = \/res/files
+
 tiny-lr-server = tiny-lr!
 livereload = -> gulp-livereload tiny-lr-server
 
@@ -67,7 +69,7 @@ gulp.task \server ->
   routes.init express-server
   routes.getEvent!
   routes.sendReply!
-  routes.getFiles!
+  routes.getFiles paths.app, files-dir
   express-server.use express.static paths.build
   express-server.listen port
   gulp-util.log "Listening on port: #port"
@@ -79,6 +81,7 @@ gulp.task \watch <[build server]> ->
   gulp.watch [paths.app+\/**/*.html,paths.app+\/**/*.jade,\README.md], <[html]>
   gulp.watch [paths.app+\/**/*.ls,paths.app+\/**/*.js], <[js]>
   gulp.watch [paths.app+\/comment.json,paths.app+\event.json], <[json]>
+  gulp.watch [paths.app+\/res/**/*], <[res]>
 
 gulp.task \build <[css html js res json]>
 gulp.task \default <[watch]>

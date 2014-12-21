@@ -477,29 +477,34 @@ mask = ->
     $ \#mask .remove!
 
 download = ->
-  $.getJSON \/loadFiles (json) !->
-    for let file in json
-      exten = file.dir.split \. .pop!.toLowerCase!
-      console.log exten
+  $.getJSON \/loadFiles (ary) !->
+    for let file in ary
+      console.log file
+      if file is /\/(\d{8})\s(.+)\.([a-zA-Z]+)/
+        [null, date, name, extend] = that
+        console.log that
+      else return
+      extend = extend.toLowerCase!
+      console.log extend
       $ "\#file .grid" .append "
         <div class='row'>
           <div class='thirteen wide column'>
-            <h3> #{file.name} </h3>
+            <h3> #name </h3>
           </div>
           <div class='two wide column'>
-            <h3> #{file.date} </h3>
+            <h3> #date </h3>
           </div>
           <div class='one wide column'>
-            <a href='#{file.dir}' download='#{file.name}'>
+            <a href='#file' download='#name'>
               <i class='icon large link #{
-                if exten is ('rar' or 'zip' or '7z') then 'file archive outline'
-                else if exten is ('mp3' or 'wav' or 'wma' or 'flac') then 'file audio outline'
-                else if exten is ('xls' or 'xlsx') then 'file excel outline'
-                else if exten is ('jpg' or 'jpeg' or 'png' or 'gif' or 'bmp' or 'tif' or 'tiff') then 'file image outline'
-                else if exten is ('pdf') then 'file pdf outline'
-                else if exten is ('ppt' or 'pptx') then 'file powerpoint outline'
-                else if exten is ('mp4' or 'mov' or 'avi' or 'wmv' or 'mts' or 'm2ts' or 'mpg' or 'mpeg' or 'mpg' or 'mpeg') then 'file video outline'
-                else if exten is ('doc' or 'docx') then 'file word outline'
+                if extend is ('rar' or 'zip' or '7z') then 'file archive outline'
+                else if extend is ('mp3' or 'wav' or 'wma' or 'flac') then 'file audio outline'
+                else if extend is ('xls' or 'xlsx') then 'file excel outline'
+                else if extend is ('jpg' or 'jpeg' or 'png' or 'gif' or 'bmp' or 'tif' or 'tiff') then 'file image outline'
+                else if extend is ('pdf') then 'file pdf outline'
+                else if extend is ('ppt' or 'pptx') then 'file powerpoint outline'
+                else if extend is ('mp4' or 'mov' or 'avi' or 'wmv' or 'mts' or 'm2ts' or 'mpg' or 'mpeg' or 'mpg' or 'mpeg') then 'file video outline'
+                else if extend is ('doc' or 'docx') then 'file word outline'
                 else 'file outline'
               }'>
               </i>

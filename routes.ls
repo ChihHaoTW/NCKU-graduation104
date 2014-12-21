@@ -1,4 +1,4 @@
-require! <[jsonfile body-parser]>
+require! <[jsonfile body-parser fs]>
 
 module.exports =
   init: (server) !->
@@ -8,8 +8,8 @@ module.exports =
     @app.use bodyParser.urlencoded {+extended}
 
   getEvent: !->
-    event = jsonfile.readFileSync \event.json
     @app.get \/loadEvent (req, res) !->
+      event = jsonfile.readFileSync \event.json
       res.send event
       res.end!
 
@@ -20,12 +20,13 @@ module.exports =
       jsonfile.writeFileSync \comment.json, json-ary
       setTimeout ->
         res.send json-ary
+        res.end!
       , 3000
 
-  getFiles: !->
-    file = jsonfile.readFileSync \file.json
+  getFiles: (path, file-dir) !->
     @app.get \/loadFiles (req, res) !->
-      res.send file
+      files = fs.readdirSync path+file-dir
+      res.send [ file-dir + '/' + str for str in files ]
       res.end!
 
 
