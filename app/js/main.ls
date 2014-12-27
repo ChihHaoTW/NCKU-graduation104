@@ -366,7 +366,6 @@ $ !->
 
   for let i from 1 to 13
     <- $.imgpreload "/res/images/sign/#i.png"
-    console.log i
 
   $ \#page_2 .hide!
   $ \#page_3 .hide!
@@ -378,7 +377,6 @@ $ !->
   winWidth = $ window .width!
 
   $.getJSON \/loadEvent (json) !->
-    console.log json
 
     for let year in json
       for let month in year.content
@@ -459,7 +457,6 @@ $ !->
       else if i == 3
         $ \body .css \background, "\#fff"
 
-      console.log winWidth
 
   #$ \.info .click !->
   #  mask!
@@ -479,13 +476,10 @@ mask = ->
 download = ->
   $.getJSON \/loadFiles (ary) !->
     for let file in ary
-      console.log file
-      if file is /\/(\d{8})\s(.+)\.([a-zA-Z]+)/
+      if file is /\/(\d{8})(.+)\.([a-zA-Z]+)/
         [null, date, name, extend] = that
-        console.log that
       else return
       extend = extend.toLowerCase!
-      console.log extend
       $ "\#file .grid" .append "
         <div class='row'>
           <div class='thirteen wide column'>
