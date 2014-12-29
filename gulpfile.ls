@@ -11,6 +11,8 @@ paths =
 
 files-dir = \/res/files
 
+logfile = fs.createWriteStream \./logfile.log, {flags: 'a'}
+
 tiny-lr-server = tiny-lr!
 livereload = -> gulp-livereload tiny-lr-server
 
@@ -65,6 +67,7 @@ gulp.task \server ->
   require! \express
   express-server = express!
   express-server.use require(\connect-livereload)!
+  express-server.use express.logger {stream: logfile}
   routes = require \./routes.ls
   routes.init express-server
   routes.getEvent!
