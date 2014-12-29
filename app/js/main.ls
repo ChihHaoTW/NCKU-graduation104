@@ -451,11 +451,20 @@ $ !->
 
       if i == 1
         $ \body .css {background: "\#fff url(res/images/back.png) repeat-y top", background-size: \cover}
+        window.location.hash = \home
       else if i == 2
         $ \body .css \background, "\#fff"
         css!
+        window.location.hash = \members
       else if i == 3
         $ \body .css \background, "\#fff"
+        window.location.hash = \contact
+      else if i == 4
+        $ \body .css \background, "\#fff"
+        window.location.hash = \download
+      else
+        $ \body .css \background, "\#fff"
+        window.location.hash = ""
 
 
   #$ \.info .click !->
@@ -465,15 +474,32 @@ $ !->
   reply!
   profile!
   download!
+  locate!
+  $ window .bind \hashchange, locate
 
-mask = ->
+function locate
+  hash = window.location.hash - \#
+
+  switch hash
+  case \home
+    $ \#icon_1 .trigger \click
+  case \members
+    $ \#icon_2 .trigger \click
+  case \contact
+    $ \#icon_3 .trigger \click
+  case \download
+    $ \#icon_4 .trigger \click
+  default
+    window.location.hash = ""
+
+function mask
   $ \body .append "<div id='mask'></div>"
   $ \#mask .animate {opacity:"0.3"}
   $ \#mask .click ->
     <- $ \#mask .animate {opacity:"0"}
     $ \#mask .remove!
 
-download = ->
+function download
   $.getJSON \/loadFiles (ary) !->
     for let file in ary
       if file is /\/(\d{8})(.+)\.([a-zA-Z]+)/
@@ -490,7 +516,7 @@ download = ->
           </div>
           <div class='one wide column'>
             <a href='#file' download='#name'>
-              <i class='icon large link #{
+              <i class='icon link #{
                 if extend is ('rar' or 'zip' or '7z') then 'file archive outline'
                 else if extend is ('mp3' or 'wav' or 'wma' or 'flac') then 'file audio outline'
                 else if extend is ('xls' or 'xlsx') then 'file excel outline'
@@ -508,7 +534,7 @@ download = ->
       "
 
 cur-click = true
-profile = ->
+function profile
   $ \#cur-profile .click ->
     return unless cur-click
     cur-click := false
@@ -611,7 +637,7 @@ profile = ->
         $ "\#profile-#i" .animate {borderBottomColor: profile-map[old-id][\color]}
         $ "\#name-#i p" .text profile-map[old-id][\name] .animate {color: profile-map[old-id][\color]}
 
-pro = ->
+function pro
   for let i from 1 to 13
     $ "\#col#i" .click !->
       col-height = $ "\#col1" .height!
@@ -637,7 +663,7 @@ pro = ->
         $ "\#col#j" .animate {opacity:"0.5"}
 
 reply-click = true
-reply = ->
+function reply
   $ \#cancel .click !->
     $ \#name .val ''
     $ \#department .val ''
@@ -694,7 +720,7 @@ reply = ->
         , 3000
     }
 
-css = ->
+function css
   $ \#profile-content .css \height, \100%
   $ \#profile-content .css(\height, $ \#profile-content .height! - 8)
 
