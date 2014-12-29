@@ -116,7 +116,12 @@ profile-map =
         "鳳新莊之夜 / 活動長" ]
       \2014 : [ "KNC4大高雄跨領域體驗營 / 值星官" ]
     say : "
-      大家安安，預祝大家畢業快樂</br>
+      大學很大 選擇很多 但時間很短<br/>
+      好多事情真的一眨眼就過去了<br/>
+      快樂的 難過的 都值得好好珍惜<br/>
+      <br/>
+      在所剩不多的大學生涯裡<br/>
+      希望我們都能不留下遺憾<br/>
       "
   \6 :
     office : \活動部長
@@ -373,8 +378,8 @@ $ !->
 
   state = 4
   pre-state = 1
-  count = 0
   winWidth = $ window .width!
+  circle-count = 0
 
   $.getJSON \/loadEvent (json) !->
 
@@ -392,6 +397,7 @@ $ !->
         # ")
         for let day in month.content
           event = day.content
+          count = circle-count++
           count_ = count++ % 2
           if count_ == 0
             $ \#ss-container .append "
@@ -403,14 +409,14 @@ $ !->
                   </h3>
                 </div>
                 <div class='ss-right'>
-                  <a class='ss-circle ss-circle-3'> #{event.content} </a>
+                  <a class='ss-circle ss-circle-3 circle-#count'> #{event.content} </a>
                 </div>
               </div>
             "
           else
             $ \#ss-container .append "
               <div class='ss-row #{event.scale}'>
-                <div class='ss-left'>
+                <div class='ss-left circle-#count'>
                   <a class='ss-circle ss-circle-3'> #{event.content} </a>
                 </div>
                 <div class='ss-right'>
@@ -421,6 +427,10 @@ $ !->
                 </div>
               </div>
             "
+          if event.hasOwnProperty \eventHtml
+            $ ".circle-#count" .addClass \pointer .click ->
+              mask!
+              $ \#mask .append "<div id='mask-container'>#{event.event-html}</div>"
 
     scroll!
 
@@ -494,8 +504,10 @@ function locate
 
 function mask
   $ \body .append "<div id='mask'></div>"
-  $ \#mask .animate {opacity:"0.3"}
+  $ \#mask .animate {opacity:"0.9"}
   $ \#mask .click ->
+    console.log it.target.id
+    return if it.target.id isnt \mask
     <- $ \#mask .animate {opacity:"0"}
     $ \#mask .remove!
 

@@ -17,6 +17,20 @@ html
   max-width 100%
   font-size 16px
 
+#mask-container
+  p
+    font-size 1rem
+    font-family "微軟正黑體"
+  a:link
+    color blue
+  overflow auto
+  line-height 1.5rem
+  padding 3% 5% 0 5%
+  background-color #FFF
+  margin 0 auto
+  width 70%
+  height 100%
+
 .pointer
   cursor pointer
   transition opacity .3s ease-in-out
@@ -293,11 +307,11 @@ img
   right 5%
 
 #mask
-  position absolute
+  position fixed
   z-index 100
   width 100vw
   height 100vh
-  background-color #000
+  background-color rgba(0,0,0,0.4)
   opacity 0
 
 #contact
