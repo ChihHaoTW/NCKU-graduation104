@@ -416,8 +416,8 @@ $ !->
           else
             $ \#ss-container .append "
               <div class='ss-row #{event.scale}'>
-                <div class='ss-left circle-#count'>
-                  <a class='ss-circle ss-circle-3'> #{event.content} </a>
+                <div class='ss-left'>
+                  <a class='ss-circle ss-circle-3 circle-#count'> #{event.content} </a>
                 </div>
                 <div class='ss-right'>
                   <h3>
@@ -428,6 +428,7 @@ $ !->
               </div>
             "
           if event.hasOwnProperty \eventHtml
+            $ ".circle-#count" .css \background-image, "url('res/images/event-background/#{event.tittle}.jpg')"
             $ ".circle-#count" .addClass \pointer .click ->
               mask!
               $ \#mask .append "<div id='mask-container'>#{event.event-html}</div>"
