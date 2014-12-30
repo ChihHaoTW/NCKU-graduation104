@@ -494,6 +494,10 @@ $ !->
   $ window .bind \hashchange, locate
 
 function locate
+
+  $ \#logo .click ->
+    window.location.href = ''
+
   hash = window.location.hash - \#
 
   switch hash
