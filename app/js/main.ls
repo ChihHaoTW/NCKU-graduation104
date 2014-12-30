@@ -431,7 +431,7 @@ $ !->
             $ ".circle-#count" .css \background-image, "url('res/images/event-background/#{event.tittle}.jpg')"
             $ ".circle-#count" .addClass \pointer .click ->
               mask!
-              $ \#mask .append "<div id='mask-container'>#{event.event-html}</div>"
+              $ \#mask .append "<div id='mask-container'>#{event.event-html}<br><br><br></div>"
 
     scroll!
 
@@ -529,7 +529,7 @@ function download
           </div>
           <div class='one wide column'>
             <a href='#file' download='#name'>
-              <i class='icon link #{
+              <i class='icon link large #{
                 if extend is ('rar' or 'zip' or '7z') then 'file archive outline'
                 else if extend is ('mp3' or 'wav' or 'wma' or 'flac') then 'file audio outline'
                 else if extend is ('xls' or 'xlsx') then 'file excel outline'
