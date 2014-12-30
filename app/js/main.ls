@@ -435,9 +435,11 @@ $ !->
 
     scroll!
 
+  click-state = true
   for let i from 1 to state
     $('#icon_'+i).click !->
-      return if i == pre-state
+      return if i is pre-state or not click-state
+      click-state := false
 
       pre-state_ = pre-state
       pre-state := i
@@ -450,15 +452,18 @@ $ !->
 
       if i == 1
         $ "\#page_#pre-state_" .hide!
-        $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+        <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+        click-state := true
         # $ \#ss-links .animate {left: "10px"}, 100
       else if pre-state_ == 1
         # $ \#ss-links .animate {left: "-#{$ \#ss-links .width!}"}, 100
-        $ \#book .animate {right: $('#page_'+i).position!.left}, 500
         $ "\#page_#pre-state_" .hide!
+        <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+        click-state := true
       else
-        $ \#book .animate {right: $('#page_'+i).position!.left}, 500
         $ "\#page_#pre-state_" .hide!
+        <- $ \#book .animate {right: $('#page_'+i).position!.left}, 500
+        click-state := true
 
       if i == 1
         $ \body .css {background: "\#fff url(res/images/back.png) repeat-y top", background-size: \cover}
