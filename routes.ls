@@ -29,5 +29,9 @@ module.exports =
       res.send [ file-dir + '/' + str for str in files ]
       res.end!
 
+  staticRouter: !->
+    @app.get "/:var(home|members|contact|download)?" (req, res) !->
+      res.sendfile \public/index.html
+
 
 # vi:et:ft=ls:nowrap:sw=2:ts=2

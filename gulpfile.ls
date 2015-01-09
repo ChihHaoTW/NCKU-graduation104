@@ -70,6 +70,7 @@ gulp.task \server ->
   express-server.use express.logger {stream: logfile}
   routes = require \./routes.ls
   routes.init express-server
+  routes.staticRouter!
   routes.getEvent!
   routes.sendReply!
   routes.getFiles paths.app, files-dir

@@ -512,11 +512,24 @@ function locate
   default
     window.location.hash = ""
 
+  # path = window.location.pathname - \/
+
+  # switch path
+  # case \home
+  #   $ \#icon_1 .trigger \click
+  # case \members
+  #   $ \#icon_2 .trigger \click
+  # case \contact
+  #   $ \#icon_3 .trigger \click
+  # case \download
+  #   $ \#icon_4 .trigger \click
+  # default
+  #   window.location.pathname = ""
+
 function mask
   $ \body .append "<div id='mask'></div>"
   $ \#mask .animate {opacity:"0.9"}
   $ \#mask .click ->
-    console.log it.target.id
     return if it.target.id isnt \mask
     <- $ \#mask .animate {opacity:"0"}
     $ \#mask .remove!
