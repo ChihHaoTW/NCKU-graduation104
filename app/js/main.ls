@@ -727,7 +727,10 @@ function reply
         $ \#email .parent \.ui.input .removeClass \error
 
     return if not reply-click
+
+    time = new Date!
     temp =
+      time: time
       name: $ \#name .val!
       department: $ \#department .val!
       email: $ \#email .val!
