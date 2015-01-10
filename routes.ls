@@ -19,7 +19,7 @@ module.exports =
       json-ary.push req.body
       jsonfile.writeFileSync \comment.json, json-ary
       setTimeout ->
-        res.send json-ary
+        res.send req.body
         res.end!
       , 3000
 
