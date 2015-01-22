@@ -395,13 +395,14 @@ $ !->
         #   </div>
         # </div>
         # ")
-        for let day in month.content
+        check = true
+        for day in month.content
           event = day.content
           count = circle-count++
           count_ = count++ % 2
           if count_ == 0
             $ \#ss-container .append "
-              <div class='ss-row #{event.scale}'>
+              <div class='ss-row #{event.scale}' #{if check then "id='#{month-mapping month.month}'" else ""}>
                 <div class='ss-left'>
                   <h3>
                     <span>#{month.month}, #{year.year}</span>
@@ -415,7 +416,7 @@ $ !->
             "
           else
             $ \#ss-container .append "
-              <div class='ss-row #{event.scale}'>
+              <div class='ss-row #{event.scale}' #{if check then "id='#{month-mapping month.month}'" else ""}>
                 <div class='ss-left'>
                   <a class='ss-circle ss-circle-3 circle-#count'> #{event.content} </a>
                 </div>
@@ -427,6 +428,7 @@ $ !->
                 </div>
               </div>
             "
+          check = false
           if event.hasOwnProperty \eventHtml
             $ ".circle-#count" .css \background-image, "url('res/images/event-background/#{event.tittle}.jpg')"
             $ ".circle-#count" .addClass \pointer .click ->
@@ -492,6 +494,10 @@ $ !->
   download!
   locate!
   $ window .bind \hashchange, locate
+
+function month-mapping
+  map = <[Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec]>
+  map[it - 1]
 
 function locate
 
