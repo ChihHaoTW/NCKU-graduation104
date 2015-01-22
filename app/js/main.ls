@@ -428,6 +428,8 @@ $ !->
                 </div>
               </div>
             "
+          if check
+            $ \#ss-links .append "<a href='##{month-mapping month.month}'> #{month-mapping month.month} </a>"
           check = false
           if event.hasOwnProperty \eventHtml
             $ ".circle-#count" .css \background-image, "url('res/images/event-background/#{event.tittle}.jpg')"
