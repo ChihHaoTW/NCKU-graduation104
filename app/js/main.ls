@@ -405,7 +405,7 @@ $ !->
               <div class='ss-row #{event.scale}' #{if check then "id='#{month-mapping month.month}'" else ""}>
                 <div class='ss-left'>
                   <h3>
-                    <span>#{month.month}, #{year.year}</span>
+                    <span>#{month-mapping month.month}, #{year.year}</span>
                     <a> #{event.tittle} </a>
                   </h3>
                 </div>
@@ -422,7 +422,7 @@ $ !->
                 </div>
                 <div class='ss-right'>
                   <h3>
-                    <span>#{month.month}, #{year.year}</span>
+                    <span>#{month-mapping month.month}, #{year.year}</span>
                     <a> #{event.tittle} </a>
                   </h3>
                 </div>
