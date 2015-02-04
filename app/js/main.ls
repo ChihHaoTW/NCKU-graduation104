@@ -396,7 +396,7 @@ $ !->
         # </div>
         # ")
         check = true
-        for day in month.content
+        for let day in month.content
           event = day.content
           count = circle-count++
           count_ = count++ % 2
