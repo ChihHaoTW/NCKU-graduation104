@@ -37,16 +37,6 @@
       {
         "month" : 3,
         "content" : [
-          {
-            "day" : "",
-            "content" :   {
-              "scale" : "ss-medium",
-              "date" : "date",
-              "tittle" : "名人講座",
-              "locate" : "locate",
-              "content" : "content"
-            }
-          }
         ]
       },
       {
@@ -58,16 +48,6 @@
               "scale" : "ss-medium",
               "date" : "date",
               "tittle" : "畢業傳情",
-              "locate" : "locate",
-              "content" : "content"
-            }
-          },
-          {
-            "day" : "",
-            "content" :   {
-              "scale" : "ss-medium",
-              "date" : "date",
-              "tittle" : "已畢業學長姐心得分享會",
               "locate" : "locate",
               "content" : "content"
             }
@@ -83,6 +63,26 @@
               "scale" : "ss-medium",
               "date" : "date",
               "tittle" : "畢業紀念冊出爐",
+              "locate" : "locate",
+              "content" : "content"
+            }
+          },
+          {
+            "day" : "",
+            "content" :   {
+              "scale" : "ss-medium",
+              "date" : "date",
+              "tittle" : "成先啟後 產業沙龍 X 學長姐分享會",
+              "locate" : "locate",
+              "content" : "content"
+            }
+          },
+          {
+            "day" : "",
+            "content" :   {
+              "scale" : "ss-medium",
+              "date" : "date",
+              "tittle" : "名人講座",
               "locate" : "locate",
               "content" : "content"
             }
