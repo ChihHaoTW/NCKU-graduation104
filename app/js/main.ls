@@ -712,42 +712,42 @@ function pro
 
 reply-click = true
 function reply
-  $ \#cancel .click !->
-    $ \#name .val ''
-    $ \#department .val ''
-    $ \#email .val ''
-    $ \#comment .val ''
+  $ "\#contact .cancel" .click !->
+    $ "\#contact .name" .val ''
+    $ "\#contact .department" .val ''
+    $ "\#contact .email" .val ''
+    $ "\#contact .comment" .val ''
 
-  $ \#reply .click !->
-    if $ \#name .val! == "" or $ \#department .val! == "" or $ \#comment .val! == ""  or $ \#email .val! is not /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      if $ \#name .val! == ""
-        $ \#name .parent \.ui.input .addClass \error
-      if $ \#department .val! == ""
-        $ \#department .parent \.ui.input .addClass \error
-      if $ \#comment .val! == ""
-        $ \#comment .parent \.ui.input .addClass \error
-      if $ \#email .val! is not /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        $ \#email .parent \.ui.input .addClass \error
+  $ "\#contact .reply" .click !->
+    if $ "\#contact .name" .val! == "" or $ "\#contact .department" .val! == "" or $ "\#contact .comment" .val! == ""  or $ "\#contact .email" .val! is not /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      if $ "\#contact .name" .val! == ""
+        $ "\#contact .name" .parent \.ui.input .addClass \error
+      if $ "\#contact .department" .val! == ""
+        $ "\#contact .department" .parent \.ui.input .addClass \error
+      if $ "\#contact .comment" .val! == ""
+        $ "\#contact .comment" .parent \.ui.input .addClass \error
+      if $ "\#contact .email" .val! is not /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        $ "\#contact .email" .parent \.ui.input .addClass \error
       return
     else
-      if $ \#name .val! !== ""
-        $ \#name .parent \.ui.input .removeClass \error
-      if $ \#department .val! !== ""
-        $ \#department .parent \.ui.input .removeClass \error
-      if $ \#comment .val! !== ""
-        $ \#comment .parent \.ui.input .removeClass \error
-      if $ \#email .val! is /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        $ \#email .parent \.ui.input .removeClass \error
+      if $ "\#contact .name" .val! !== ""
+        $ "\#contact .name" .parent \.ui.input .removeClass \error
+      if $ "\#contact .department" .val! !== ""
+        $ "\#contact .department" .parent \.ui.input .removeClass \error
+      if $ "\#contact .comment" .val! !== ""
+        $ "\#contact .comment" .parent \.ui.input .removeClass \error
+      if $ "\#contact .email" .val! is /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        $ "\#contact .email" .parent \.ui.input .removeClass \error
 
     return if not reply-click
 
     time = new Date!
     temp =
       time: time
-      name: $ \#name .val!
-      department: $ \#department .val!
-      email: $ \#email .val!
-      comment: $ \#comment .val!
+      name: $ "\#contact .name" .val!
+      department: $ "\#contact .department" .val!
+      email: $ "\#contact .email" .val!
+      comment: $ "\#contact .comment" .val!
 
     $.ajax {
       type: \POST
@@ -756,17 +756,17 @@ function reply
       data: JSON.stringify temp
       beforeSend: ->
         reply-click := false
-        $ \#reply .addClass \loading
+        $ "\#contact .reply" .addClass \loading
       success: ->
         console.log "Post success!"
-        $ \#reply .removeClass \loading .text \DONE! .css \cursor, \default
+        $ "\#contact .reply" .removeClass \loading .text \DONE! .css \cursor, \default
       complete: ->
-        $ \#name .val ''
-        $ \#department .val ''
-        $ \#email .val ''
-        $ \#comment .val ''
+        $ "\#contact .name" .val ''
+        $ "\#contact .department" .val ''
+        $ "\#contact .email" .val ''
+        $ "\#contact .comment" .val ''
         setTimeout ->
-          $ \#reply .text \Reply .css \cursor, \pointer
+          $ "\#contact .reply" .text \Reply .css \cursor, \pointer
           reply-click := true
         , 3000
     }
