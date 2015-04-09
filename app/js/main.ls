@@ -379,8 +379,9 @@ $ !->
   $ \#page_2 .hide!
   $ \#page_3 .hide!
   $ \#page_4 .hide!
+  $ \#page_5 .hide!
 
-  state = 4
+  state = 5
   pre-state = 1
   winWidth = $ window .width!
   circle-count = 0
