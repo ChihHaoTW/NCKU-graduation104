@@ -235,36 +235,55 @@ html(lang="zh-tw")
 
         br
       
-       // .container#page_5
-       //   #t-shirt
-       //     .ui.attached.message
-       //       .header_
-       //         h2 畢業 T-shirt 預購
-       //         p.contact-sub 這裏要填什麼
-       //     form.ui.form.attached.fluid.segment
-       //       .two.fields
-       //         .ui.field.input
-       //           label 
-       //             h3(style="font-weight:bold") 姓名
-       //           input.name(placeholder="Name" type="text")
-       //         .ui.field.input
-       //           label 
-       //             h3(style="font-weight:bold") 系級 
-       //           input.department(placeholder="Department" type="text")
-       //       .ui.field.input
-       //         label 
-       //           h3(style="font-weight:bold") 電子信箱
-       //         input.email(placeholder="E-mail address" type="text")
-       //       .ui.field.input
-       //         label 
-       //           h3(style="font-weight:bold") 想跟我說什麼？
-       //         textarea.comment(placeholder="Comment" style="height:auto")
-       //       .submit
-       //         .ui.buttons
-       //           .ui.button.cancel Cancel
-       //           .or
-       //           .ui.button.positive.reply Reply
-       //   br      
+      .container#page_5
+        #t-shirt
+          .ui.attached.message
+            .header_
+              h2 畢業 T-shirt 預購
+              p.contact-sub 這裏要填什麼
+          form.ui.form.attached.fluid.segment
+            .three.fields
+              .ui.field.input
+                label 
+                  h3(style="font-weight:bold") 姓名
+                input.name(placeholder="Name" type="text")
+              .ui.field.input
+                label 
+                  h3(style="font-weight:bold") 系級 
+                input.department(placeholder="Department" type="text")
+              .ui.field.input
+                label 
+                  h3(style="font-weight:bold") 學號
+                input.id(placeholder="Student ID" type="text")
+            .two.fields
+              .ui.field.input
+                label 
+                  h3(style="font-weight:bold") 電子信箱
+                input.email(placeholder="E-mail address" type="text")
+              .ui.field.input
+                label 
+                  h3(style="font-weight:bold") 手機
+                input.phone(placeholder="Phone number" type="text")
+            .ui.field.input
+              label 
+                h3(style="font-weight:bold") 訂購數量
+              .ui.selection.dropdown
+                input(type="hidden" name="amount")
+                .text 0 
+                i.dropdown.icon
+                .menu
+                  .item(data-value="1") 1
+                  .item(data-value="2") 2
+                  .item(data-value="3") 3
+                  .item(data-value="4") 4
+                  .item(data-value="5") 5
+            .t-shirts
+            .submit
+              .ui.buttons
+                .ui.button.cancel Cancel
+                .or
+                .ui.button.positive.reply Reply
+        br      
 
 
     //- #mask

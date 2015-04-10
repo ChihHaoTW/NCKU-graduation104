@@ -502,6 +502,8 @@ $ !->
   locate!
   $ window .bind \hashchange, locate
 
+  $ \.ui.dropdown .dropdown!
+
 function month-mapping
   map = <[Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec]>
   map[it - 1]
