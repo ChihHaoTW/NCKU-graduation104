@@ -502,7 +502,57 @@ $ !->
   locate!
   $ window .bind \hashchange, locate
 
-  $ \.ui.dropdown .dropdown!
+  $ "\#page_5 .ui.dropdown" .dropdown onChange: (value, text) ->
+    console.log "#value, #text"
+
+    $ "\#page_5 .t-shirts" .empty!
+
+    for i from 1 to value
+      $ "\#page_5 .t-shirts" .append "
+        <div id='t-shirt-#i'>
+          <div class='ui divider'></div>
+            <h3> T-shirt #i </h3>
+          <div class='fields five'>
+
+            <div class='ui field'>
+              <label>
+                <h4> 顏色 </h4>
+              </label>
+              <div class='ui selection dropdown'>
+                <input type='hidden' name='color'>
+                <div class='text'> color </div><i class='dropdown icon'></i>
+                <div class='menu'>
+                  <div data-value='1' class='item'> 灰 </div>
+                  <div data-value='2' class='item'> 藍綠 </div>
+                  <div data-value='3' class='item'> 酒紅 </div>
+                </div>
+              </div>
+            </div>
+
+            <div class='ui field'>
+              <label>
+                <h4> 尺寸 </h4>
+              </label>
+              <div class='ui selection dropdown'>
+                <input type='hidden' name='size'>
+                <div class='text'> size </div><i class='dropdown icon'></i>
+                <div class='menu'>
+                  <div data-value='1' class='item'> 女XS </div>
+                  <div data-value='2' class='item'> 女S </div>
+                  <div data-value='3' class='item'> 女M </div>
+                  <div data-value='4' class='item'> 女L </div>
+                  <div data-value='5' class='item'> 男S </div>
+                  <div data-value='6' class='item'> 男M </div>
+                  <div data-value='7' class='item'> 男L </div>
+                  <div data-value='8' class='item'> 男XL </div>
+                </div>
+              </div>
+            </div>
+ 
+          </div>
+        </div>
+      "
+      $ "\#t-shirt-#i .ui.dropdown" .dropdown!
 
 function month-mapping
   map = <[Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec]>

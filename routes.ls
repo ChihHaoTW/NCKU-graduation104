@@ -1,5 +1,8 @@
 require! <[jsonfile body-parser fs]>
 
+db-pass = (fs.readFileSync \db).toString! / '\n'
+console.log db-pass
+
 module.exports =
   init: (server) !->
     jsonfile.spaces = 4
