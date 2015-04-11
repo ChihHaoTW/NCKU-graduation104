@@ -1,7 +1,19 @@
-require! <[jsonfile body-parser fs]>
+require! <[jsonfile body-parser fs mongoose]>
 
 db-pass = (fs.readFileSync \db).toString! / '\n'
-console.log db-pass
+mongoose.connect "mongodb://#{db-pass[0]}:#{db-pass[1]}@59.127.231.73/nckugraduation"
+db = mongoose.connection
+db.on 'error', console.error.bind(console, 'connection error:')
+
+UserSchema = new mongoose.Schema{
+  name: String
+  department: String
+  id: String
+  email: String
+  phone: String
+  amount: Number
+  t-shirts: [color: String size: String]
+}
 
 module.exports =
   init: (server) !->
