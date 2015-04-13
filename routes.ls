@@ -14,6 +14,7 @@ UserSchema = new mongoose.Schema{
   amount: Number
   t-shirts: [color: String size: String]
 }
+User = mongoose.model 'users', UserSchema
 
 module.exports =
   init: (server) !->
@@ -47,6 +48,19 @@ module.exports =
   staticRouter: !->
     @app.get "/:var(home|members|contact|download)?" (req, res) !->
       res.sendfile \public/index.html
+
+  t-shirt: !->
+    @app.post \/t-shirt (req, res) !->
+      obj = JSON.parse req.body
+      User.findOne {id: obj.id.toLowerCase!}, (err, user) !->
+        if user
+          info = \您已經填過預購單了！
+        else
+          tmp = new User {name:obj.name department:obj.department id:obj.id.toLowerCase! email:obj.email phone:obj.phone amount:obj.amount t-shirts:obj.t-shirts}
+          tmp.save!
+          info = \預購成功！
+
+        res.send info:info
 
 
 # vi:et:ft=ls:nowrap:sw=2:ts=2
