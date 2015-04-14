@@ -5,14 +5,15 @@ mongoose.connect "mongodb://#{db-pass[0]}:#{db-pass[1]}@59.127.231.73/nckugradua
 db = mongoose.connection
 db.on 'error', console.error.bind(console, 'connection error:')
 
-UserSchema = new mongoose.Schema{
+UserSchema = new mongoose.Schema {
+  time: String
   name: String
   department: String
   id: String
   email: String
   phone: String
   amount: Number
-  t-shirts: [color: String size: String]
+  t-shirts: [color: String, size: String]
 }
 User = mongoose.model 'users', UserSchema
 
