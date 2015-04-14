@@ -500,6 +500,7 @@ $ !->
   profile!
   download!
   locate!
+  t-shirt!
   $ window .bind \hashchange, locate
 
   $ "\#page_5 .ui.dropdown" .dropdown onChange: (value, text) ->
@@ -822,6 +823,18 @@ function reply
           reply-click := true
         , 3000
     }
+
+t-shirt-click = true
+function t-shirt
+  $ "\#t-shirt .cancel" .click !->
+    $ "\#t-shirt .name" .val ''
+    $ "\#t-shirt .id" .val ''
+    $ "\#t-shirt .department" .val ''
+    $ "\#t-shirt .email" .val ''
+    $ "\#t-shirt .phone" .val ''
+    $ '\#t-shirt .ui.dropdown' .dropdown 'restore defaults'
+    $ "\#page_5 .t-shirts" .empty!
+
 
 function css
   $ \#profile-content .css \height, \100%
