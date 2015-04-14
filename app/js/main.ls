@@ -835,6 +835,37 @@ function t-shirt
     $ '\#t-shirt .ui.dropdown' .dropdown 'restore defaults'
     $ "\#page_5 .t-shirts" .empty!
 
+    $ "\#t-shirt .ui.input" .removeClass \error
+
+  need-return = false
+  $ "\#t-shirt .reply" .click !->
+    # if $ "\#t-shirt .phone" .val! is not /[0-9]{10}/ or $ "\#t-shirt .name" .val! == "" or $ "\#t-shirt .department" .val! == "" or $ "\#t-shirt .id" .val! == ""  or $ "\#t-shirt .email" .val! is not /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    if $ "\#t-shirt .name" .val! == ""
+      $ "\#t-shirt .name" .parent \.ui.input .addClass \error
+      need-return = true
+    else
+      $ "\#t-shirt .name" .parent \.ui.input .removeClass \error
+    if $ "\#t-shirt .id" .val! == ""
+      $ "\#t-shirt .id" .parent \.ui.input .addClass \error
+      need-return = true
+    else
+      $ "\#t-shirt .id" .parent \.ui.input .removeClass \error
+    if $ "\#t-shirt .department" .val! == ""
+      $ "\#t-shirt .department" .parent \.ui.input .addClass \error
+      need-return = true
+    else
+      $ "\#t-shirt .department" .parent \.ui.input .removeClass \error
+    if $ "\#t-shirt .email" .val! is not /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      $ "\#t-shirt .email" .parent \.ui.input .addClass \error
+      need-return = true
+    else
+      $ "\#t-shirt .email" .parent \.ui.input .removeClass \error
+    if $ "\#t-shirt .phone" .val! is not /[0-9]{10}/
+      $ "\#t-shirt .phone" .parent \.ui.input .addClass \error
+      need-return = true
+    else
+      $ "\#t-shirt .phone" .parent \.ui.input .removeClass \error
+    return if need-return
 
 function css
   $ \#profile-content .css \height, \100%
