@@ -6,7 +6,7 @@ db = mongoose.connection
 db.on 'error', console.error.bind(console, 'connection error:')
 
 UserSchema = new mongoose.Schema {
-  time: String
+  time: Date
   name: String
   department: String
   id: String
@@ -56,11 +56,11 @@ module.exports =
       obj = req.body
       User.findOne {id: obj.id.toLowerCase!}, (err, user) !->
         if user
-          info = \±z¤w¸g¶ñ¹L¹wÁÊ³æ¤F¡I
+          info = \æ‚¨å·²ç¶“å¡«éé è³¼å–®äº†ï¼
         else
-          tmp = new User {name:obj.name, department:obj.department, id:obj.id.toLowerCase!, email:obj.email, phone:obj.phone, amount:obj.amount, t-shirts:obj.t-shirts}
+          tmp = new User {time:obj.time, name:obj.name, department:obj.department, id:obj.id.toLowerCase!, email:obj.email, phone:obj.phone, amount:obj.amount, t-shirts:obj.t-shirts}
           tmp.save!
-          info = \¹wÁÊ¦¨¥\¡I
+          info = \é è³¼æˆåŠŸï¼
 
         res.send info:info
 
