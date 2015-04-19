@@ -73,6 +73,7 @@ gulp.task \server ->
   routes.staticRouter!
   routes.getEvent!
   routes.sendReply!
+  routes.t-shirt!
   routes.getFiles paths.app, files-dir
   express-server.use express.static paths.build
   express-server.listen port

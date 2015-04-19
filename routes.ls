@@ -52,12 +52,13 @@ module.exports =
 
   t-shirt: !->
     @app.post \/t-shirt (req, res) !->
-      obj = JSON.parse req.body
+      console.log req.body
+      obj = req.body
       User.findOne {id: obj.id.toLowerCase!}, (err, user) !->
         if user
           info = \您已經填過預購單了！
         else
-          tmp = new User {name:obj.name department:obj.department id:obj.id.toLowerCase! email:obj.email phone:obj.phone amount:obj.amount t-shirts:obj.t-shirts}
+          tmp = new User {name:obj.name, department:obj.department, id:obj.id.toLowerCase!, email:obj.email, phone:obj.phone, amount:obj.amount, t-shirts:obj.t-shirts}
           tmp.save!
           info = \預購成功！
 

@@ -503,58 +503,6 @@ $ !->
   t-shirt!
   $ window .bind \hashchange, locate
 
-  $ "\#page_5 .ui.dropdown" .dropdown onChange: (value, text) ->
-    console.log "#value, #text"
-
-    $ "\#page_5 .t-shirts" .empty!
-
-    for i from 1 to value
-      $ "\#page_5 .t-shirts" .append "
-        <div id='t-shirt-#i'>
-          <div class='ui divider'></div>
-            <h3> T-shirt #i </h3>
-          <div class='fields five'>
-
-            <div class='ui field'>
-              <label>
-                <h4> 顏色 </h4>
-              </label>
-              <div class='ui selection dropdown'>
-                <input type='hidden' name='color'>
-                <div class='text'> color </div><i class='dropdown icon'></i>
-                <div class='menu'>
-                  <div data-value='1' class='item'> 灰 </div>
-                  <div data-value='2' class='item'> 藍綠 </div>
-                  <div data-value='3' class='item'> 酒紅 </div>
-                </div>
-              </div>
-            </div>
-
-            <div class='ui field'>
-              <label>
-                <h4> 尺寸 </h4>
-              </label>
-              <div class='ui selection dropdown'>
-                <input type='hidden' name='size'>
-                <div class='text'> size </div><i class='dropdown icon'></i>
-                <div class='menu'>
-                  <div data-value='1' class='item'> 女XS </div>
-                  <div data-value='2' class='item'> 女S </div>
-                  <div data-value='3' class='item'> 女M </div>
-                  <div data-value='4' class='item'> 女L </div>
-                  <div data-value='5' class='item'> 男S </div>
-                  <div data-value='6' class='item'> 男M </div>
-                  <div data-value='7' class='item'> 男L </div>
-                  <div data-value='8' class='item'> 男XL </div>
-                </div>
-              </div>
-            </div>
- 
-          </div>
-        </div>
-      "
-      $ "\#t-shirt-#i .ui.dropdown" .dropdown!
-
 function month-mapping
   map = <[Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec]>
   map[it - 1]
@@ -771,6 +719,7 @@ function reply
     $ "\#contact .email" .val ''
     $ "\#contact .comment" .val ''
 
+  # [TODO] fix
   $ "\#contact .reply" .click !->
     if $ "\#contact .name" .val! == "" or $ "\#contact .department" .val! == "" or $ "\#contact .comment" .val! == ""  or $ "\#contact .email" .val! is not /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       if $ "\#contact .name" .val! == ""
@@ -826,6 +775,68 @@ function reply
 
 t-shirt-click = true
 function t-shirt
+  t-shirt-amount = 0
+  var t-shirts
+  $ "\#page_5 .ui.dropdown" .dropdown onChange: (value, text) ->
+    console.log "#value, #text"
+    t-shirt-amount := value
+    t-shirts := new Array value
+
+    $ "\#page_5 .t-shirts" .empty!
+
+    for let i from 1 to value
+      t-shirts[i - 1] := color: null, size: null
+      $ "\#page_5 .t-shirts" .append "
+        <div id='t-shirt-#i'>
+          <div class='ui divider'></div>
+            <h3> T-shirt #i </h3>
+          <div class='fields five'>
+
+            <div class='ui field'>
+              <label>
+                <h4> 顏色 </h4>
+              </label>
+              <div class='color ui selection dropdown'>
+                <input type='hidden' name='color'>
+                <div class='text'> color </div><i class='dropdown icon'></i>
+                <div class='menu'>
+                  <div data-value='1' class='item'> 灰 </div>
+                  <div data-value='2' class='item'> 藍綠 </div>
+                  <div data-value='3' class='item'> 酒紅 </div>
+                </div>
+              </div>
+            </div>
+
+            <div class='ui field'>
+              <label>
+                <h4> 尺寸 </h4>
+              </label>
+              <div class='size ui selection dropdown'>
+                <input type='hidden' name='size'>
+                <div class='text'> size </div><i class='dropdown icon'></i>
+                <div class='menu'>
+                  <div data-value='1' class='item'> 女XS </div>
+                  <div data-value='2' class='item'> 女S </div>
+                  <div data-value='3' class='item'> 女M </div>
+                  <div data-value='4' class='item'> 女L </div>
+                  <div data-value='5' class='item'> 男S </div>
+                  <div data-value='6' class='item'> 男M </div>
+                  <div data-value='7' class='item'> 男L </div>
+                  <div data-value='8' class='item'> 男XL </div>
+                </div>
+              </div>
+            </div>
+ 
+          </div>
+        </div>
+      "
+      $ "\#t-shirt-#i .color.ui.dropdown" .dropdown onChange: (value, text) !->
+        t-shirts[i - 1].color := text
+        console.log t-shirts
+      $ "\#t-shirt-#i .size.ui.dropdown" .dropdown onChange: (value, text) !->
+        t-shirts[i - 1].size := text
+        console.log t-shirts
+
   $ "\#t-shirt .cancel" .click !->
     $ "\#t-shirt .name" .val ''
     $ "\#t-shirt .id" .val ''
@@ -837,8 +848,9 @@ function t-shirt
 
     $ "\#t-shirt .ui.input" .removeClass \error
 
-  need-return = false
+# [TODO] return directly
   $ "\#t-shirt .reply" .click !->
+    need-return = false
     # if $ "\#t-shirt .phone" .val! is not /[0-9]{10}/ or $ "\#t-shirt .name" .val! == "" or $ "\#t-shirt .department" .val! == "" or $ "\#t-shirt .id" .val! == ""  or $ "\#t-shirt .email" .val! is not /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if $ "\#t-shirt .name" .val! == ""
       $ "\#t-shirt .name" .parent \.ui.input .addClass \error
@@ -865,7 +877,51 @@ function t-shirt
       need-return = true
     else
       $ "\#t-shirt .phone" .parent \.ui.input .removeClass \error
+
+    for t in t-shirts
+      if t.color is null or t.size is null
+        need-return = true
+
+    # console.log t-shirts
     return if need-return
+    # console.log \no-return
+
+    time = new Date!
+    temp =
+      time: time.toString!
+      name: $ "\#t-shirt .name" .val!
+      department: $ "\#t-shirt .department" .val!
+      id: $ "\#t-shirt .id" .val!
+      email: $ "\#t-shirt .email" .val!
+      phone: $ "\#t-shirt .phone" .val!
+      amount: t-shirt-amount
+      t-shirts: t-shirts
+
+    $.ajax {
+      type: \POST
+      url: \/t-shirt
+      contentType: \application/json
+      data: JSON.stringify temp
+      beforeSend: ->
+        console.log JSON.stringify temp
+        t-shirt-click := false
+        $ "\#t-shirt .reply" .addClass \loading
+      success: ->
+        console.log "Post success!"
+        $ "\#t-shirt .reply" .removeClass \loading .text \DONE! .css \cursor, \default
+        $ "\#t-shirt .name" .val ''
+        $ "\#t-shirt .id" .val ''
+        $ "\#t-shirt .department" .val ''
+        $ "\#t-shirt .email" .val ''
+        $ "\#t-shirt .phone" .val ''
+        $ '\#t-shirt .ui.dropdown' .dropdown 'restore defaults'
+        $ "\#page_5 .t-shirts" .empty!
+      complete: ->
+        setTimeout !->
+          $ "\#t-shirt .reply" .text \Reply .css \cursor, \pointer
+          t-shirt-click := true
+        , 3000
+    }
 
 function css
   $ \#profile-content .css \height, \100%
