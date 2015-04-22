@@ -47,7 +47,7 @@ module.exports =
       res.end!
 
   staticRouter: !->
-    @app.get "/:var(home|members|contact|download)?" (req, res) !->
+    @app.get "/:var(home|members|contact|download|t-shirt)?" (req, res) !->
       res.sendfile \public/index.html
 
   t-shirt: !->
