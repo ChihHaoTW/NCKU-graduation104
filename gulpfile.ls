@@ -16,13 +16,17 @@ logfile = fs.createWriteStream \./logfile.log, {flags: 'a'}
 tiny-lr-server = tiny-lr!
 livereload = -> gulp-livereload tiny-lr-server
 
+gulp.task \non-concat ->
+  gulp.src paths.app+\/non-concat/**/*
+    .pipe gulp.dest paths.build
+
 gulp.task \json ->
   gulp.src [paths.app+\/comment.json, paths.app+\/event.json]
     .pipe gulp.dest paths.build
 
 gulp.task \css ->
   css-bower = gulp.src main-bower-files! .pipe gulp-filter \**/*.css
-  css = gulp.src [paths.app+\/**/*.css paths.app+\!/**/reset.css]
+  css = gulp.src [paths.app+\/**/*.css, "!"+paths.app+\/non-concat/**/*.css, paths.app+\!/**/reset.css]
   styl-app = gulp.src paths.app+\/**/*.styl .pipe gulp-stylus!
   streamqueue {+objectMode}
     .done css-bower, styl-app, css
@@ -34,7 +38,7 @@ gulp.task \css ->
     .pipe livereload!
 
 gulp.task \html ->
-  html = gulp.src paths.app+\/**/*.html
+  html = gulp.src [paths.app+\/**/*.html, "!"+paths.app+\/non-concat/**/*.html]
   jade = gulp.src paths.app+\/**/*.jade .pipe gulp-jade {+pretty}
   streamqueue {+objectMode}
     .done html, jade
@@ -45,7 +49,7 @@ gulp.task \html ->
     .pipe livereload!
 
 gulp.task \js ->
-  js = gulp.src paths.app+\/**/*.js
+  js = gulp.src [paths.app+\/**/*.js, "!"+paths.app+\/non-concat/**/*.js]
   js-bower = gulp.src main-bower-files! .pipe gulp-filter \*.js
   ls-app = gulp.src paths.app+\/**/*.ls .pipe gulp-livescript {+bare}
   streamqueue {+objectMode}
@@ -87,8 +91,9 @@ gulp.task \watch <[build server]> ->
   gulp.watch [paths.app+\/**/*.ls,paths.app+\/**/*.js], <[js]>
   gulp.watch [paths.app+\/comment.json,paths.app+\event.json], <[json]>
   gulp.watch [paths.app+\/res/**/*], <[res]>
+  gulp.watch [paths.app+\/non-concat/*], <[non-concat]>
 
-gulp.task \build <[css html js res json]>
+gulp.task \build <[css html js res json non-concat]>
 gulp.task \default <[watch]>
 
 # vi:et:ft=ls:nowrap:sw=2:ts=2
