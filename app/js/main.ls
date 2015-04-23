@@ -855,6 +855,8 @@ function t-shirt
 
 # [TODO] return directly
   $ "\#t-shirt .reply" .click !->
+    return if !t-shirt-click
+
     need-return = false
     # if $ "\#t-shirt .phone" .val! is not /[0-9]{10}/ or $ "\#t-shirt .name" .val! == "" or $ "\#t-shirt .department" .val! == "" or $ "\#t-shirt .id" .val! == ""  or $ "\#t-shirt .email" .val! is not /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if $ "\#t-shirt .name" .val! == ""
@@ -913,14 +915,21 @@ function t-shirt
         $ "\#t-shirt .reply" .addClass \loading
       success: ->
         console.log "Post success!"
-        $ "\#t-shirt .reply" .removeClass \loading .text \DONE! .css \cursor, \default
-        $ "\#t-shirt .name" .val ''
-        $ "\#t-shirt .id" .val ''
-        $ "\#t-shirt .department" .val ''
-        $ "\#t-shirt .email" .val ''
-        $ "\#t-shirt .phone" .val ''
-        $ '\#t-shirt .ui.dropdown' .dropdown 'restore defaults'
-        $ "\#page_5 .t-shirts" .empty!
+        console.log it.check
+        if it.check is true
+          $ "\#t-shirt .reply" .removeClass \loading .text \DONE! .css \cursor, \default
+          $ "\#t-shirt .name" .val ''
+          $ "\#t-shirt .id" .val ''
+          $ "\#t-shirt .department" .val ''
+          $ "\#t-shirt .email" .val ''
+          $ "\#t-shirt .phone" .val ''
+          $ '\#t-shirt .ui.dropdown' .dropdown 'restore defaults'
+          $ "\#page_5 .t-shirts" .empty!
+
+          alert it.info
+        else
+          $ "\#t-shirt .reply" .removeClass \loading .text \WRONG! .css \cursor, \default
+          alert it.info
       complete: ->
         setTimeout !->
           $ "\#t-shirt .reply" .text \Reply .css \cursor, \pointer
