@@ -59,7 +59,12 @@ module.exports =
       res.sendfile \public/index.html
 
   t-shirt: !->
+    start-date = new Date "4/23/2015 16:50:00"
     @app.post \/t-shirt (req, res) !->
+      cur-date = new Date!
+      if cur-date.getTime! < start-date.getTime!
+        res.send check: false, info: \尚未開放！
+
       <-! setTimeout _, 3000
 
       obj = req.body
