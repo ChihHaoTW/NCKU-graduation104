@@ -487,6 +487,9 @@ $ !->
       else if i == 4
         $ \body .css \background, "\#fff"
         window.location.hash = \download
+      else if i == 5
+        $ \body .css \background, "\#fff"
+        window.location.hash = \t-shirt
       else
         $ \body .css \background, "\#fff"
         window.location.hash = ""
@@ -523,6 +526,8 @@ function locate
     $ \#icon_3 .trigger \click
   case \download
     $ \#icon_4 .trigger \click
+  case \t-shirt
+    $ \#icon_5 .trigger \click
   default
     window.location.hash = ""
 
