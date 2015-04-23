@@ -59,13 +59,18 @@ module.exports =
       res.sendfile \public/index.html
 
   t-shirt: !->
-    start-date = new Date "4/23/2015 16:50:00"
+    start-date = new Date "4/23/2015 23:59:00"
+    max-amount = 20
     @app.post \/t-shirt (req, res) !->
       cur-date = new Date!
       if cur-date.getTime! < start-date.getTime!
-        res.send check: false, info: \尚未開放！
+        res.send check: false, info: \不是開放時間！
 
       <-! setTimeout _, 3000
+      (err, c) <-! User.count {}
+      console.log c
+      if c >= max-amount
+        res.send check: false, info: \數量已滿！
 
       obj = req.body
 
