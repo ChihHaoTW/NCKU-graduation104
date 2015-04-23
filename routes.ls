@@ -59,18 +59,20 @@ module.exports =
       res.sendfile \public/index.html
 
   t-shirt: !->
-    start-date = new Date "4/23/2015 23:59:00"
-    max-amount = 20
+    start-date = new Date "4/24/2015 01:30:00"
+    max-amount = 27
     @app.post \/t-shirt (req, res) !->
       cur-date = new Date!
       if cur-date.getTime! < start-date.getTime!
         res.send check: false, info: \不是開放時間！
+        return
 
       <-! setTimeout _, 3000
       (err, c) <-! User.count {}
       console.log c
       if c >= max-amount
         res.send check: false, info: \數量已滿！
+        return
 
       obj = req.body
 
@@ -85,9 +87,12 @@ module.exports =
         need-return = true
       if obj.phone isnt /[0-9]{10}/
         need-return = true
+      if obj.amount > 5
+        need-return = true
 
       if need-return
         res.send check: false, info: "Wrong data!"
+        return
 
       User.findOne {id: obj.id.toLowerCase!}, (err, user) !->
         if user
