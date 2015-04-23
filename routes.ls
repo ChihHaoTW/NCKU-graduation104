@@ -60,14 +60,33 @@ module.exports =
 
   t-shirt: !->
     @app.post \/t-shirt (req, res) !->
-      console.log req.body
+      <-! setTimeout _, 3000
+
       obj = req.body
+
+      need-return = false
+      if obj.name is ''
+        need-return = true
+      if obj.id is ''
+        need-return = true
+      if obj.department is ''
+        need-return = true
+      if obj.email isnt /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        need-return = true
+      if obj.phone isnt /[0-9]{10}/
+        need-return = true
+
+      if need-return
+        res.send check: false, info: "Wrong data!"
+
       User.findOne {id: obj.id.toLowerCase!}, (err, user) !->
         if user
+          check = false
           info = \您已經填過預購單了！
         else
           tmp = new User {time:obj.time, name:obj.name, department:obj.department, id:obj.id.toLowerCase!, email:obj.email, phone:obj.phone, amount:obj.amount, t-shirts:obj.t-shirts}
           tmp.save!
+          check = true
           info = \預購成功！
           transporter.sendMail {
             from: "國立成功大學應屆畢業生聯合會 <nckugraduation@gmail.com>"
@@ -80,7 +99,7 @@ module.exports =
             "
           }
 
-        res.send info:info
+        res.send check: check, info:info
 
 
 # vi:et:ft=ls:nowrap:sw=2:ts=2
