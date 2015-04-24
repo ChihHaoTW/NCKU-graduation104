@@ -25,6 +25,13 @@ UserSchema = new mongoose.Schema {
 }
 User = mongoose.model 'users', UserSchema
 
+CounterSchema = new mongoose.Schema {
+  counter:
+    type: Number
+    default: 0
+}
+Counter = mongoose.model \counter, CounterSchema
+
 module.exports =
   init: (server) !->
     jsonfile.spaces = 4
@@ -60,17 +67,26 @@ module.exports =
 
   t-shirt: !->
     start-date = new Date "4/24/2015 01:30:00"
+    end-date = new Date "12/24/2015 23:59:59"
     max-amount = 27
+
+    Counter.findOne {}, (err, counter) !->
+      if counter
+        console.log \counter
+      else
+        tmp = new Counter {counter: 0}
+        tmp.save!
+
     @app.post \/t-shirt (req, res) !->
       cur-date = new Date!
-      if cur-date.getTime! < start-date.getTime!
+
+      <-! setTimeout _, 3000
+      if cur-date.getTime! < start-date.getTime! or cur-date.getTime! > end-date.getTime!
         res.send check: false, info: \不是開放時間！
         return
 
-      <-! setTimeout _, 3000
-      (err, c) <-! User.count {}
-      console.log c
-      if c >= max-amount
+      (err, c) <-! Counter.findOne {}
+      if c.counter >= max-amount
         res.send check: false, info: \數量已滿！
         return
 
@@ -99,6 +115,10 @@ module.exports =
           check = false
           info = \您已經填過預購單了！
         else
+          c.counter += obj.amount
+          c.save!
+          console.log c.counter
+
           tmp = new User {time:obj.time, name:obj.name, department:obj.department, id:obj.id.toLowerCase!, email:obj.email, phone:obj.phone, amount:obj.amount, t-shirts:obj.t-shirts}
           tmp.save!
           check = true
