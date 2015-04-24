@@ -490,6 +490,11 @@ $ !->
       else if i == 5
         $ \body .css \background, "\#fff"
         window.location.hash = \t-shirt
+
+        $ \.mask .animate {opacity:"1.0"}
+        $ \.mask .click ->
+          <- $ \.mask .animate {opacity:"0"}
+          $ \.mask .remove!
       else
         $ \body .css \background, "\#fff"
         window.location.hash = ""
