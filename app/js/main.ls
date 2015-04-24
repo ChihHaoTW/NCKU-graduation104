@@ -787,6 +787,7 @@ function t-shirt
     t-shirt-amount := value
     t-shirts := new Array value
 
+    $ "\#page_5 .price h2 a" .text t-shirt-amount * 349
     $ "\#page_5 .t-shirts" .empty!
 
     for let i from 1 to value
@@ -805,9 +806,9 @@ function t-shirt
                 <input type='hidden' name='color'>
                 <div class='text'> color </div><i class='dropdown icon'></i>
                 <div class='menu'>
-                  <div data-value='1' class='item'> 灰 </div>
-                  <div data-value='2' class='item'> 藍綠 </div>
-                  <div data-value='3' class='item'> 酒紅 </div>
+                  <div data-value='1' class='item'> 瑪薩拉酒紅 MARSALA RED </div>
+                  <div data-value='2' class='item'> 潛水藍 SCUBA BLUE </div>
+                  <div data-value='3' class='item'> 麻花灰 TWISTED GRAY </div>
                 </div>
               </div>
             </div>
