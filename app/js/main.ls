@@ -853,6 +853,7 @@ function t-shirt
     $ "\#page_5 .t-shirts" .empty!
 
     $ "\#t-shirt .ui.input" .removeClass \error
+    $ "\#page_5 .price h2 a" .text 0
 
 # [TODO] return directly
   $ "\#t-shirt .reply" .click !->
@@ -926,6 +927,7 @@ function t-shirt
           $ "\#t-shirt .phone" .val ''
           $ '\#t-shirt .ui.dropdown' .dropdown 'restore defaults'
           $ "\#page_5 .t-shirts" .empty!
+          $ "\#page_5 .price h2 a" .text 0
 
           alert it.info
         else
