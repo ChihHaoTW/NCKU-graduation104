@@ -153,7 +153,6 @@ module.exports =
             <br>
             １０４級畢聯會官網：<a href='http://nckugraduation.tw'> http://nckugraduation.tw </a><br>
             「2015 NCKU 畢業紀念T繳費確認」google 表單：<a href='http://goo.gl/gcJyl0'> http://goo.gl/gcJyl0 </a><br>
-
             "
           }
 
