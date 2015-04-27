@@ -801,7 +801,7 @@ function t-shirt
         <div id='t-shirt-#i'>
           <div class='ui divider'></div>
             <h3> T-shirt #i </h3>
-          <div class='fields five'>
+          <div class='fields four'>
 
             <div class='ui field'>
               <label>
