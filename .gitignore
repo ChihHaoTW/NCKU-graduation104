@@ -4,3 +4,4 @@ npm-debug.log
 port
 public/
 tmp/
+.DS_Store
