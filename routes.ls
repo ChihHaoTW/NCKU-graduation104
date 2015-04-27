@@ -45,7 +45,6 @@ module.exports =
     @app.get \/loadEvent (req, res) !->
       event = jsonfile.readFileSync \event.json
       res.send event
-      res.end!
 
   sendReply: !->
     @app.post \/writeReply (req, res) !->
@@ -54,14 +53,12 @@ module.exports =
       jsonfile.writeFileSync \comment.json, json-ary
       setTimeout ->
         res.send req.body
-        res.end!
       , 3000
 
   getFiles: (path, file-dir) !->
     @app.get \/loadFiles (req, res) !->
       files = fs.readdirSync path+file-dir
       res.send [ file-dir + '/' + str for str in files ]
-      res.end!
 
   staticRouter: !->
     @app.get "/:var(home|members|contact|download|t-shirt)?" (req, res) !->
