@@ -20,6 +20,7 @@ UserSchema = new mongoose.Schema {
   id: String
   email: String
   phone: String
+  remark: String
   amount: Number
   price: Number
   t-shirts: [color: String, size: String]
@@ -121,7 +122,7 @@ module.exports =
           c.save!
           console.log c.counter
 
-          tmp = new User {time:obj.time, name:obj.name, department:obj.department, id:obj.id.toLowerCase!, email:obj.email, phone:obj.phone, amount:obj.amount, price: obj.amount * t-shirt-price, t-shirts:obj.t-shirts}
+          tmp = new User {time:obj.time, name:obj.name, department:obj.department, id:obj.id.toLowerCase!, email:obj.email, phone:obj.phone, remark:obj.remark, amount:obj.amount, price: obj.amount * t-shirt-price, t-shirts:obj.t-shirts}
           tmp.save!
           check = true
           info = \預購成功！

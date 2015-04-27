@@ -855,10 +855,11 @@ function t-shirt
     $ "\#t-shirt .email" .val ''
     $ "\#t-shirt .phone" .val ''
     $ '\#t-shirt .ui.dropdown' .dropdown 'restore defaults'
-    $ "\#page_5 .t-shirts" .empty!
+    $ "\#t-shirt .t-shirts" .empty!
+    $ "\#t-shirt .remark" .val ''
 
     $ "\#t-shirt .ui.input" .removeClass \error
-    $ "\#page_5 .price h2 a" .text 0
+    $ "\#t-shirt .price h2 a" .text 0
 
 # [TODO] return directly
   $ "\#t-shirt .reply" .click !->
@@ -908,6 +909,7 @@ function t-shirt
       id: $ "\#t-shirt .id" .val!
       email: $ "\#t-shirt .email" .val!
       phone: $ "\#t-shirt .phone" .val!
+      remark: $ "\#t-shirt .remark" .val!
       amount: t-shirt-amount
       t-shirts: t-shirts
 
