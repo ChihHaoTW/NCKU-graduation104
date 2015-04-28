@@ -28,11 +28,30 @@ UserSchema = new mongoose.Schema {
 User = mongoose.model 'users', UserSchema
 
 CounterSchema = new mongoose.Schema {
-  counter:
+  red:
+    type: Number
+    default: 0
+  blue:
+    type: Number
+    default: 0
+  gray:
     type: Number
     default: 0
 }
 Counter = mongoose.model \counter, CounterSchema
+
+function count-color objs
+  red = 0
+  blue = 0
+  gray = 0
+
+  for obj in objs
+    switch obj.color
+    | " 瑪薩拉酒紅 MARSALA RED " => red++
+    | " 潛水藍 SCUBA BLUE " => blue++
+    | " 麻花灰 TWISTED GRAY " => gray++
+
+  return {red:red, blue:blue, gray:gray}
 
 module.exports =
   init: (server) !->
@@ -65,16 +84,16 @@ module.exports =
       res.sendfile \public/index.html
 
   t-shirt: !->
-    start-date = new Date "5/1/2015 12:00:00"
+    start-date = new Date "4/1/2015 12:00:00"
     end-date = new Date "5/3/2015 23:59:59"
-    max-amount = 480
+    max-amount = 9 #480
     t-shirt-price = 349
 
     Counter.findOne {}, (err, counter) !->
       if counter
         console.log \counter
       else
-        tmp = new Counter {counter: 0}
+        tmp = new Counter {red: 0, blue: 0, gray: 0}
         tmp.save!
 
     @app.post \/t-shirt (req, res) !->
@@ -86,8 +105,29 @@ module.exports =
         return
 
       (err, c) <-! Counter.findOne {}
-      if c.counter >= max-amount
-        res.send check: false, info: \數量已滿！
+      if c.red >= max-amount
+        if c.blue >= max-amount
+          if c.gray >= max-amount
+            res.send check: false, info: "瑪薩拉酒紅 MARSALA RED、潛水藍 SCUBA BLUE、麻花灰 TWISTED GRAY 數量已滿，請重新填寫"
+            return
+          else
+            res.send check: false, info: "瑪薩拉酒紅 MARSALA RED、潛水藍 SCUBA BLUE 數量已滿，請重新填寫"
+            return
+        else if c.gray >= max-amount
+          res.send check: false, info: "瑪薩拉酒紅 MARSALA RED、麻花灰 TWISTED GRAY 數量已滿，請重新填寫"
+          return
+        else
+          res.send check: false, info: "瑪薩拉酒紅 MARSALA RED 數量已滿，請重新填寫"
+          return
+      else if c.blue >= max-amount
+        if c.gray >= max-amount
+          res.send check: false, info: "潛水藍 SCUBA BLUE、麻花灰 TWISTED GRAY 數量已滿，請重新填寫"
+          return
+        else
+          res.send check: false, info: "潛水藍 SCUBA BLUE 數量已滿，請重新填寫"
+          return
+      else if c.gray >= max-amount
+        res.send check: false, info: "麻花灰 TWISTED GRAY 數量已滿，請重新填寫"
         return
 
       obj = req.body
@@ -115,9 +155,12 @@ module.exports =
           check = false
           info = \您已經填過預購單了！
         else
-          c.counter += obj.amount
+          tmp = count-color obj.t-shirts
+          c.red  += tmp.red
+          c.blue += tmp.blue
+          c.gray += tmp.gray
           c.save!
-          console.log c.counter
+          console.log tmp
 
           tmp = new User {time:obj.time, name:obj.name, department:obj.department, id:obj.id.toLowerCase!, email:obj.email, phone:obj.phone, remark:obj.remark, amount:obj.amount, price: obj.amount * t-shirt-price, t-shirts:obj.t-shirts}
           tmp.save!
