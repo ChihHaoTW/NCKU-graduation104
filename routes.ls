@@ -65,9 +65,9 @@ module.exports =
       res.sendfile \public/index.html
 
   t-shirt: !->
-    start-date = new Date "4/24/2015 01:30:00"
-    end-date = new Date "12/24/2015 23:59:59"
-    max-amount = 27
+    start-date = new Date "5/1/2015 12:00:00"
+    end-date = new Date "5/3/2015 23:59:59"
+    max-amount = 480
     t-shirt-price = 349
 
     Counter.findOne {}, (err, counter) !->
