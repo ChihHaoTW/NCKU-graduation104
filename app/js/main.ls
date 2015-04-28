@@ -932,9 +932,10 @@ function t-shirt
           $ "\#t-shirt .department" .val ''
           $ "\#t-shirt .email" .val ''
           $ "\#t-shirt .phone" .val ''
+          $ "\#t-shirt .remark" .val ''
           $ '\#t-shirt .ui.dropdown' .dropdown 'restore defaults'
-          $ "\#page_5 .t-shirts" .empty!
-          $ "\#page_5 .price h2 a" .text 0
+          $ "\#t-shirt .t-shirts" .empty!
+          $ "\#t-shirt .price h2 a" .text 0
 
           alert it.info
         else
