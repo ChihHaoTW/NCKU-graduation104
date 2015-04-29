@@ -213,9 +213,9 @@ module.exports =
             <br>
             以下有幾點注意事項：<br>
             1. 請三天內至郵局轉帳或匯款（請勿使用無摺存款）<br> 
-               匯款資料如下：
-                 受款人戶名：國立成功大學應屆畢業生聯合會王芷苑
-                 局號＆帳號：003107-1 083412-1
+            &nbsp;&nbsp;&nbsp;匯款資料如下：<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;受款人戶名：國立成功大學應屆畢業生聯合會王芷苑<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;局號＆帳號：003107-1 083412-1<br>
             2. 填寫「<a href='http://goo.gl/gcJyl0'>2015 NCKU 畢業紀念T繳費確認</a>」表單<br>
             3. 收取畢聯會繳費成功 e-mail<br>
             <br>
