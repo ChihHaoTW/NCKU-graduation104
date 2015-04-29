@@ -937,7 +937,7 @@ function t-shirt
           $ "\#t-shirt .t-shirts" .empty!
           $ "\#t-shirt .price h2 a" .text 0
 
-          alert it.info
+          alert it.info+"\n記得去收信！"
         else
           $ "\#t-shirt .reply" .removeClass \loading .text \WRONG! .css \cursor, \default
           alert it.info
