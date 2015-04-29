@@ -1,5 +1,12 @@
 require! <[jsonfile body-parser fs mongoose nodemailer]>
 
+Array.prototype.hasOwnValue = (val) ->
+  for obj in @
+    for prop of obj
+      if obj.hasOwnProperty prop and obj[prop] is val
+        return true
+  return false
+
 db-pass = (fs.readFileSync \db).toString! / '\n'
 mail-pass = (fs.readFileSync \mail).toString! / '\n'
 mongoose.connect "mongodb://#{db-pass[0]}:#{db-pass[1]}@59.127.231.73/nckugraduation"
@@ -104,33 +111,53 @@ module.exports =
         res.send check: false, info: \不是開放時間！
         return
 
-      (err, c) <-! Counter.findOne {}
-      if c.red >= max-amount
-        if c.blue >= max-amount
-          if c.gray >= max-amount
-            res.send check: false, info: "瑪薩拉酒紅 MARSALA RED、潛水藍 SCUBA BLUE、麻花灰 TWISTED GRAY 數量已滿，請重新填寫"
-            return
-          else
-            res.send check: false, info: "瑪薩拉酒紅 MARSALA RED、潛水藍 SCUBA BLUE 數量已滿，請重新填寫"
-            return
-        else if c.gray >= max-amount
-          res.send check: false, info: "瑪薩拉酒紅 MARSALA RED、麻花灰 TWISTED GRAY 數量已滿，請重新填寫"
-          return
-        else
-          res.send check: false, info: "瑪薩拉酒紅 MARSALA RED 數量已滿，請重新填寫"
-          return
-      else if c.blue >= max-amount
-        if c.gray >= max-amount
-          res.send check: false, info: "潛水藍 SCUBA BLUE、麻花灰 TWISTED GRAY 數量已滿，請重新填寫"
-          return
-        else
-          res.send check: false, info: "潛水藍 SCUBA BLUE 數量已滿，請重新填寫"
-          return
-      else if c.gray >= max-amount
-        res.send check: false, info: "麻花灰 TWISTED GRAY 數量已滿，請重新填寫"
-        return
+      is-full =
+        red:  false
+        blue: false
+        gray: false
+      full-info = \數量已滿，請重新填寫
 
       obj = req.body
+
+      (err, c) <-! Counter.findOne {}
+      if c.gray >= max-amount
+        is-full.gray := true
+        full-info := '麻花灰 TWISTED GRAY  ' + full-info
+      if c.blue >= max-amount
+        is-full.blue := true
+        full-info := '潛水藍 SCUBA BLUE  ' + full-info
+      if c.red  >= max-amount
+        is-full.red := true
+        full-info := '瑪薩拉酒紅 MARSALA RED  ' + full-info
+
+      if (is-full.red and obj.t-shirts.hasOwnValue " 瑪薩拉酒紅 MARSALA RED ") or (is-full.blue and obj.t-shirts.hasOwnValue " 潛水藍 SCUBA BLUE ") or (is-full.gray and obj.t-shirts.hasOwnValue " 麻花灰 TWISTED GRAY ")
+        res.send check: false, info: full-info
+        return
+
+      # if c.red >= max-amount
+      #   if c.blue >= max-amount
+      #     if c.gray >= max-amount
+      #       res.send check: false, info: "瑪薩拉酒紅 MARSALA RED、潛水藍 SCUBA BLUE、麻花灰 TWISTED GRAY 數量已滿，請重新填寫"
+      #       return
+      #     else
+      #       res.send check: false, info: "瑪薩拉酒紅 MARSALA RED、潛水藍 SCUBA BLUE 數量已滿，請重新填寫"
+      #       return
+      #   else if c.gray >= max-amount
+      #     res.send check: false, info: "瑪薩拉酒紅 MARSALA RED、麻花灰 TWISTED GRAY 數量已滿，請重新填寫"
+      #     return
+      #   else
+      #     res.send check: false, info: "瑪薩拉酒紅 MARSALA RED 數量已滿，請重新填寫"
+      #     return
+      # else if c.blue >= max-amount
+      #   if c.gray >= max-amount
+      #     res.send check: false, info: "潛水藍 SCUBA BLUE、麻花灰 TWISTED GRAY 數量已滿，請重新填寫"
+      #     return
+      #   else
+      #     res.send check: false, info: "潛水藍 SCUBA BLUE 數量已滿，請重新填寫"
+      #     return
+      # else if c.gray >= max-amount
+      #   res.send check: false, info: "麻花灰 TWISTED GRAY 數量已滿，請重新填寫"
+      #   return
 
       need-return = false
       if obj.name is ''
