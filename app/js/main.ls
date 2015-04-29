@@ -943,7 +943,7 @@ function t-shirt
           alert it.info
       complete: ->
         setTimeout !->
-          $ "\#t-shirt .reply" .text \Reply .css \cursor, \pointer
+          $ "\#t-shirt .reply" .text \SEND .css \cursor, \pointer
           t-shirt-click := true
         , 3000
     }
