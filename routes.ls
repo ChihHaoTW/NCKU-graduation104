@@ -91,9 +91,9 @@ module.exports =
       res.sendfile \public/index.html
 
   t-shirt: !->
-    start-date = new Date "4/1/2015 12:00:00"
+    start-date = new Date "5/1/2015 12:00:00"
     end-date = new Date "5/3/2015 23:59:59"
-    max-amount = 9 #480
+    max-amount = 480
     t-shirt-price = 349
 
     Counter.findOne {}, (err, counter) !->
@@ -220,7 +220,7 @@ module.exports =
             3. 收取畢聯會繳費成功 e-mail<br>
             <br>
             需完成以上所有事項才算預購完成！<br>
-            本次畢業紀念Ｔ購買因為沒有開放現場繳費及郵寄服務，訂購順序將以填寫「2015 NCKU 畢業紀念T繳費確認」google表單之時間排序（經校對後無誤），畢聯會將於５／１１～１５開始開放現場領取，領取時間及地點將另外發文通知，逾時不候。１０４級畢業生聯合會感謝大家的配合☺ <br>
+            本次畢業紀念Ｔ購買因為沒有開放現場繳費及郵寄服務，訂購順序將以填寫「2015 NCKU 畢業紀念T繳費確認」google表單之時間排序（經校對後無誤），畢聯會將於 6 / 8 ~ 12 開始開放現場領取，領取時間及地點將另外發文通知，逾時不候。１０４級畢業生聯合會感謝大家的配合☺ <br>
             <br>
             １０４級畢聯會官網：<a href='http://nckugraduation.tw'> http://nckugraduation.tw </a><br>
             「2015 NCKU 畢業紀念T繳費確認」google 表單：<a href='http://goo.gl/gcJyl0'> http://goo.gl/gcJyl0 </a><br>
