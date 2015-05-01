@@ -93,7 +93,10 @@ module.exports =
   t-shirt: !->
     start-date = new Date "5/1/2015 12:00:00"
     end-date = new Date "5/3/2015 23:59:59"
-    max-amount = 480
+    max-amount =
+      red: 450
+      blue:475
+      gray:475
     t-shirt-price = 349
 
     Counter.findOne {}, (err, counter) !->
@@ -120,13 +123,13 @@ module.exports =
       obj = req.body
 
       (err, c) <-! Counter.findOne {}
-      if c.gray >= max-amount
+      if c.gray >= max-amount.gray
         is-full.gray := true
         full-info := '麻花灰 TWISTED GRAY  ' + full-info
-      if c.blue >= max-amount
+      if c.blue >= max-amount.blue
         is-full.blue := true
         full-info := '潛水藍 SCUBA BLUE  ' + full-info
-      if c.red  >= max-amount
+      if c.red  >= max-amount.red
         is-full.red := true
         full-info := '瑪薩拉酒紅 MARSALA RED  ' + full-info
 
@@ -215,7 +218,7 @@ module.exports =
             1. 請三天內至郵局轉帳或匯款（請勿使用無摺存款）<br> 
             &nbsp;&nbsp;&nbsp;匯款資料如下：<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;受款人戶名：國立成功大學應屆畢業生聯合會王芷苑<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;局號＆帳號：003107-1 083412-1<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;局號＆帳號：(700)003107-1 083412-1<br>
             2. 填寫「<a href='http://goo.gl/gcJyl0'>2015 NCKU 畢業紀念T繳費確認</a>」表單<br>
             3. 收取畢聯會繳費成功 e-mail<br>
             <br>
