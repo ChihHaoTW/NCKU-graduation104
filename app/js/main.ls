@@ -792,7 +792,7 @@ function t-shirt
     t-shirt-amount := value
     t-shirts := new Array value
 
-    $ "\#page_5 .price h2 a" .text t-shirt-amount * 349
+    $ "\#page_5 .price h2 a" .text t-shirt-amount * 399
     $ "\#page_5 .t-shirts" .empty!
 
     for let i from 1 to value

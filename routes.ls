@@ -91,13 +91,13 @@ module.exports =
       res.sendfile \public/index.html
 
   t-shirt: !->
-    start-date = new Date "5/1/2015 12:00:00"
-    end-date = new Date "5/3/2015 23:59:59"
+    start-date = new Date "5/4/2015 12:00:00"
+    end-date = new Date "5/7/2015 23:59:59"
     max-amount =
       red: 450
       blue:475
       gray:475
-    t-shirt-price = 349
+    t-shirt-price = 399
 
     Counter.findOne {}, (err, counter) !->
       if counter
