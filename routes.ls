@@ -232,5 +232,9 @@ module.exports =
 
         res.send check: check, info:info
 
+    @app.get \/getOrder (req, res) !->
+      User.find {}, (err, ary) !->
+        res.send data: ary
+        return
 
 # vi:et:ft=ls:nowrap:sw=2:ts=2

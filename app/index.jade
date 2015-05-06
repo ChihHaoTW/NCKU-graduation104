@@ -312,5 +312,15 @@ html(lang="zh-tw")
     //- #mask
 
     script(type="text/javascript", src="app.js")
+    script(type="text/javascript").
+      $(function(){
+        resize();
+        reply();
+        profile();
+        download();
+        locate();
+        tShirt();
+        $(window).bind("hashchange", locate);
+      });
       
 //- vi:et:nowrap:sw=2:ts=2

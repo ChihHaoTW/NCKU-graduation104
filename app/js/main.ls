@@ -503,13 +503,13 @@ $ !->
   #$ \.info .click !->
   #  mask!
 
-  resize!
-  reply!
-  profile!
-  download!
-  locate!
-  t-shirt!
-  $ window .bind \hashchange, locate
+  # resize!
+  # reply!
+  # profile!
+  # download!
+  # locate!
+  # t-shirt!
+  # $ window .bind \hashchange, locate
 
 function month-mapping
   map = <[Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec]>
@@ -947,6 +947,28 @@ function t-shirt
           t-shirt-click := true
         , 3000
     }
+
+function order
+  m = 0
+  $.getJSON \/getOrder, (data) !->
+    # console.log data
+    for user in data.data
+      m += user.amount
+      $ "table.first tbody" .append "
+        <tr>
+          <td></td>
+          <td>#{user.name}</td>
+          <td>#{user.department}</td>
+          <td>#{user.id}</td>
+          <td>#{user.email}</td>
+          <td>#{user.phone}</td>
+          <td>#{user.amount}</td>
+          <td>#{user.price}</td>
+          <td>#{for t in user.t-shirts
+                  "[ #{t.color}, #{t.size} ]<br>"}</td>
+          <td>#{user.remark}</td>
+        </tr>
+      "
 
 function css
   $ \#profile-content .css \height, \100%
