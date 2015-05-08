@@ -495,6 +495,7 @@ $ !->
         $ \.mask .click ->
           <- $ \.mask .animate {opacity:"0"}
           $ \.mask .remove!
+          alert "已結束預購活動！"
       else
         $ \body .css \background, "\#fff"
         window.location.hash = ""
