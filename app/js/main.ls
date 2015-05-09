@@ -949,6 +949,7 @@ function t-shirt
         , 3000
     }
 
+n = new Object!
 function order
   m = 0
   $.getJSON \/getOrder, (data) !->
@@ -966,6 +967,10 @@ function order
           <td>#{user.amount}</td>
           <td>#{user.price}</td>
           <td>#{for t in user.t-shirts
+                  if n.hasOwnProperty "#{t.color} #{t.size}"
+                    n["#{t.color} #{t.size}"]++
+                  else
+                    n["#{t.color} #{t.size}"] = 1
                   "[ #{t.color}, #{t.size} ]<br>"}</td>
           <td>#{user.remark}</td>
         </tr>
