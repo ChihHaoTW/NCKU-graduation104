@@ -233,7 +233,7 @@ module.exports =
         res.send check: check, info:info
 
     @app.get \/getOrder (req, res) !->
-      User.find {}, (err, ary) !->
+      User.find {}, null, {sort:{"time":1}}, (err, ary) !->
         res.send data: ary
         return
 
