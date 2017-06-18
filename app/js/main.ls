@@ -386,7 +386,7 @@ $ !->
   winWidth = $ window .width!
   circle-count = 0
 
-  $.getJSON \/loadEvent (json) !->
+  $.getJSON \/res/event.json (json) !->
 
     for let year in json
       for let month in year.content
@@ -491,11 +491,11 @@ $ !->
         $ \body .css \background, "\#fff"
         window.location.hash = \t-shirt
 
-        $ \.mask .animate {opacity:"1.0"}
-        $ \.mask .click ->
-          <- $ \.mask .animate {opacity:"0"}
-          $ \.mask .remove!
-          alert "已結束預購活動！"
+        # $ \.mask .animate {opacity:"1.0"}
+        # $ \.mask .click ->
+        #   <- $ \.mask .animate {opacity:"0"}
+        $ \.mask .remove!
+        #   alert "已結束預購活動！"
       else
         $ \body .css \background, "\#fff"
         window.location.hash = ""
